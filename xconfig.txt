@@ -1,0 +1,375 @@
+macos/
+├── Flutter
+│   ├── Flutter-Debug.xcconfig
+│   ├── Flutter-Release.xcconfig
+│   ├── GeneratedPluginRegistrant.swift
+│   └── ephemeral
+│       ├── Flutter-Generated.xcconfig
+│       ├── FlutterInputs.xcfilelist
+│       ├── FlutterMacOS.podspec
+│       ├── FlutterOutputs.xcfilelist
+│       ├── flutter_export_environment.sh
+│       └── tripwire
+├── Podfile
+├── Podfile.lock
+├── Pods
+│   ├── Firebase
+│   │   ├── CoreOnly
+│   │   │   └── Sources
+│   │   │       ├── Firebase.h
+│   │   │       └── module.modulemap
+│   │   ├── LICENSE
+│   │   └── README.md
+│   ├── FirebaseCore
+│   │   ├── FirebaseCore
+│   │   │   ├── Extension
+│   │   │   │   ├── FIRAppInternal.h
+│   │   │   │   ├── FIRComponent.h
+│   │   │   │   ├── FIRComponentContainer.h
+│   │   │   │   ├── FIRComponentType.h
+│   │   │   │   ├── FIRDependency.h
+│   │   │   │   ├── FIRHeartbeatLogger.h
+│   │   │   │   ├── FIRLibrary.h
+│   │   │   │   ├── FIRLogger.h
+│   │   │   │   ├── FIROptionsInternal.h
+│   │   │   │   └── FirebaseCoreInternal.h
+│   │   │   └── Sources
+│   │   │       ├── FIRAnalyticsConfiguration.h
+│   │   │       ├── FIRAnalyticsConfiguration.m
+│   │   │       ├── FIRApp.m
+│   │   │       ├── FIRBundleUtil.h
+│   │   │       ├── FIRBundleUtil.m
+│   │   │       ├── FIRComponent.m
+│   │   │       ├── FIRComponentContainer.m
+│   │   │       ├── FIRComponentContainerInternal.h
+│   │   │       ├── FIRComponentType.m
+│   │   │       ├── FIRConfiguration.m
+│   │   │       ├── FIRConfigurationInternal.h
+│   │   │       ├── FIRDependency.m
+│   │   │       ├── FIRFirebaseUserAgent.h
+│   │   │       ├── FIRFirebaseUserAgent.m
+│   │   │       ├── FIRHeartbeatLogger.m
+│   │   │       ├── FIRLogger.m
+│   │   │       ├── FIROptions.m
+│   │   │       ├── FIRVersion.m
+│   │   │       ├── Public
+│   │   │       │   └── FirebaseCore
+│   │   │       │       ├── FIRApp.h
+│   │   │       │       ├── FIRConfiguration.h
+│   │   │       │       ├── FIRLoggerLevel.h
+│   │   │       │       ├── FIROptions.h
+│   │   │       │       ├── FIRVersion.h
+│   │   │       │       └── FirebaseCore.h
+│   │   │       └── Resources
+│   │   │           └── PrivacyInfo.xcprivacy
+│   │   ├── LICENSE
+│   │   └── README.md
+│   ├── FirebaseCoreInternal
+│   │   ├── FirebaseCore
+│   │   │   └── Internal
+│   │   │       └── Sources
+│   │   │           ├── HeartbeatLogging
+│   │   │           │   ├── Heartbeat.swift
+│   │   │           │   ├── HeartbeatController.swift
+│   │   │           │   ├── HeartbeatLoggingTestUtils.swift
+│   │   │           │   ├── HeartbeatStorage.swift
+│   │   │           │   ├── HeartbeatsBundle.swift
+│   │   │           │   ├── HeartbeatsPayload.swift
+│   │   │           │   ├── RingBuffer.swift
+│   │   │           │   ├── Storage.swift
+│   │   │           │   ├── StorageFactory.swift
+│   │   │           │   ├── WeakContainer.swift
+│   │   │           │   ├── _ObjC_HeartbeatController.swift
+│   │   │           │   └── _ObjC_HeartbeatsPayload.swift
+│   │   │           └── Resources
+│   │   │               └── PrivacyInfo.xcprivacy
+│   │   ├── LICENSE
+│   │   └── README.md
+│   ├── GoogleUtilities
+│   │   ├── GoogleUtilities
+│   │   │   ├── Environment
+│   │   │   │   ├── GULAppEnvironmentUtil.m
+│   │   │   │   ├── GULHeartbeatDateStorage.m
+│   │   │   │   ├── GULHeartbeatDateStorageUserDefaults.m
+│   │   │   │   ├── GULSecureCoding.m
+│   │   │   │   ├── NetworkInfo
+│   │   │   │   │   └── GULNetworkInfo.m
+│   │   │   │   ├── Public
+│   │   │   │   │   └── GoogleUtilities
+│   │   │   │   │       ├── GULAppEnvironmentUtil.h
+│   │   │   │   │       ├── GULHeartbeatDateStorable.h
+│   │   │   │   │       ├── GULHeartbeatDateStorage.h
+│   │   │   │   │       ├── GULHeartbeatDateStorageUserDefaults.h
+│   │   │   │   │       ├── GULKeychainStorage.h
+│   │   │   │   │       ├── GULKeychainUtils.h
+│   │   │   │   │       ├── GULNetworkInfo.h
+│   │   │   │   │       ├── GULSecureCoding.h
+│   │   │   │   │       ├── GULURLSessionDataResponse.h
+│   │   │   │   │       └── NSURLSession+GULPromises.h
+│   │   │   │   ├── SecureStorage
+│   │   │   │   │   ├── GULKeychainStorage.m
+│   │   │   │   │   └── GULKeychainUtils.m
+│   │   │   │   └── URLSessionPromiseWrapper
+│   │   │   │       ├── GULURLSessionDataResponse.m
+│   │   │   │       └── NSURLSession+GULPromises.m
+│   │   │   ├── Logger
+│   │   │   │   ├── GULLogger.m
+│   │   │   │   └── Public
+│   │   │   │       └── GoogleUtilities
+│   │   │   │           ├── GULLogger.h
+│   │   │   │           └── GULLoggerLevel.h
+│   │   │   ├── NSData+zlib
+│   │   │   │   ├── GULNSData+zlib.m
+│   │   │   │   └── Public
+│   │   │   │       └── GoogleUtilities
+│   │   │   │           └── GULNSData+zlib.h
+│   │   │   └── Privacy
+│   │   │       └── Resources
+│   │   │           └── PrivacyInfo.xcprivacy
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   └── third_party
+│   │       └── IsAppEncrypted
+│   │           ├── IsAppEncrypted.m
+│   │           └── Public
+│   │               └── IsAppEncrypted.h
+│   ├── Headers
+│   │   ├── Private
+│   │   │   └── Firebase
+│   │   │       └── Firebase.h -> ../../../Firebase/CoreOnly/Sources/Firebase.h
+│   │   └── Public
+│   │       └── Firebase
+│   │           └── Firebase.h -> ../../../Firebase/CoreOnly/Sources/Firebase.h
+│   ├── Local Podspecs
+│   │   ├── FlutterMacOS.podspec.json
+│   │   ├── firebase_core.podspec.json
+│   │   ├── flutter_secure_storage_macos.podspec.json
+│   │   ├── path_provider_foundation.podspec.json
+│   │   └── shared_preferences_foundation.podspec.json
+│   ├── Manifest.lock
+│   ├── Pods.xcodeproj
+│   │   ├── project.pbxproj
+│   │   └── xcuserdata
+│   │       └── ckyony.xcuserdatad
+│   │           └── xcschemes
+│   │               ├── Firebase.xcscheme
+│   │               ├── FirebaseCore-FirebaseCore_Privacy.xcscheme
+│   │               ├── FirebaseCore.xcscheme
+│   │               ├── FirebaseCoreInternal-FirebaseCoreInternal_Privacy.xcscheme
+│   │               ├── FirebaseCoreInternal.xcscheme
+│   │               ├── FlutterMacOS.xcscheme
+│   │               ├── GoogleUtilities-GoogleUtilities_Privacy.xcscheme
+│   │               ├── GoogleUtilities.xcscheme
+│   │               ├── Pods-Runner.xcscheme
+│   │               ├── Pods-RunnerTests.xcscheme
+│   │               ├── PromisesObjC-FBLPromises_Privacy.xcscheme
+│   │               ├── PromisesObjC.xcscheme
+│   │               ├── firebase_core.xcscheme
+│   │               ├── flutter_secure_storage_macos-flutter_secure_storage_macos.xcscheme
+│   │               ├── flutter_secure_storage_macos.xcscheme
+│   │               ├── path_provider_foundation-path_provider_foundation_privacy.xcscheme
+│   │               ├── path_provider_foundation.xcscheme
+│   │               ├── shared_preferences_foundation-shared_preferences_foundation_privacy.xcscheme
+│   │               ├── shared_preferences_foundation.xcscheme
+│   │               └── xcschememanagement.plist
+│   ├── PromisesObjC
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   └── Sources
+│   │       └── FBLPromises
+│   │           ├── FBLPromise+All.m
+│   │           ├── FBLPromise+Always.m
+│   │           ├── FBLPromise+Any.m
+│   │           ├── FBLPromise+Async.m
+│   │           ├── FBLPromise+Await.m
+│   │           ├── FBLPromise+Catch.m
+│   │           ├── FBLPromise+Delay.m
+│   │           ├── FBLPromise+Do.m
+│   │           ├── FBLPromise+Race.m
+│   │           ├── FBLPromise+Recover.m
+│   │           ├── FBLPromise+Reduce.m
+│   │           ├── FBLPromise+Retry.m
+│   │           ├── FBLPromise+Testing.m
+│   │           ├── FBLPromise+Then.m
+│   │           ├── FBLPromise+Timeout.m
+│   │           ├── FBLPromise+Validate.m
+│   │           ├── FBLPromise+Wrap.m
+│   │           ├── FBLPromise.m
+│   │           ├── FBLPromiseError.m
+│   │           ├── Resources
+│   │           │   └── PrivacyInfo.xcprivacy
+│   │           └── include
+│   │               ├── FBLPromise+All.h
+│   │               ├── FBLPromise+Always.h
+│   │               ├── FBLPromise+Any.h
+│   │               ├── FBLPromise+Async.h
+│   │               ├── FBLPromise+Await.h
+│   │               ├── FBLPromise+Catch.h
+│   │               ├── FBLPromise+Delay.h
+│   │               ├── FBLPromise+Do.h
+│   │               ├── FBLPromise+Race.h
+│   │               ├── FBLPromise+Recover.h
+│   │               ├── FBLPromise+Reduce.h
+│   │               ├── FBLPromise+Retry.h
+│   │               ├── FBLPromise+Testing.h
+│   │               ├── FBLPromise+Then.h
+│   │               ├── FBLPromise+Timeout.h
+│   │               ├── FBLPromise+Validate.h
+│   │               ├── FBLPromise+Wrap.h
+│   │               ├── FBLPromise.h
+│   │               ├── FBLPromiseError.h
+│   │               ├── FBLPromisePrivate.h
+│   │               └── FBLPromises.h
+│   └── Target Support Files
+│       ├── Firebase
+│       │   ├── Firebase.debug.xcconfig
+│       │   └── Firebase.release.xcconfig
+│       ├── FirebaseCore
+│       │   ├── FirebaseCore-Info.plist
+│       │   ├── FirebaseCore-dummy.m
+│       │   ├── FirebaseCore-umbrella.h
+│       │   ├── FirebaseCore.debug.xcconfig
+│       │   ├── FirebaseCore.modulemap
+│       │   ├── FirebaseCore.release.xcconfig
+│       │   └── ResourceBundle-FirebaseCore_Privacy-FirebaseCore-Info.plist
+│       ├── FirebaseCoreInternal
+│       │   ├── FirebaseCoreInternal-Info.plist
+│       │   ├── FirebaseCoreInternal-dummy.m
+│       │   ├── FirebaseCoreInternal-prefix.pch
+│       │   ├── FirebaseCoreInternal-umbrella.h
+│       │   ├── FirebaseCoreInternal.debug.xcconfig
+│       │   ├── FirebaseCoreInternal.modulemap
+│       │   ├── FirebaseCoreInternal.release.xcconfig
+│       │   └── ResourceBundle-FirebaseCoreInternal_Privacy-FirebaseCoreInternal-Info.plist
+│       ├── FlutterMacOS
+│       │   ├── FlutterMacOS.debug.xcconfig
+│       │   └── FlutterMacOS.release.xcconfig
+│       ├── GoogleUtilities
+│       │   ├── GoogleUtilities-Info.plist
+│       │   ├── GoogleUtilities-dummy.m
+│       │   ├── GoogleUtilities-umbrella.h
+│       │   ├── GoogleUtilities.debug.xcconfig
+│       │   ├── GoogleUtilities.modulemap
+│       │   ├── GoogleUtilities.release.xcconfig
+│       │   └── ResourceBundle-GoogleUtilities_Privacy-GoogleUtilities-Info.plist
+│       ├── Pods-Runner
+│       │   ├── Pods-Runner-Info.plist
+│       │   ├── Pods-Runner-acknowledgements.markdown
+│       │   ├── Pods-Runner-acknowledgements.plist
+│       │   ├── Pods-Runner-dummy.m
+│       │   ├── Pods-Runner-frameworks-Debug-input-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks-Debug-output-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks-Profile-input-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks-Profile-output-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks-Release-input-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks-Release-output-files.xcfilelist
+│       │   ├── Pods-Runner-frameworks.sh
+│       │   ├── Pods-Runner-umbrella.h
+│       │   ├── Pods-Runner.debug.xcconfig
+│       │   ├── Pods-Runner.modulemap
+│       │   ├── Pods-Runner.profile.xcconfig
+│       │   └── Pods-Runner.release.xcconfig
+│       ├── Pods-RunnerTests
+│       │   ├── Pods-RunnerTests-Info.plist
+│       │   ├── Pods-RunnerTests-acknowledgements.markdown
+│       │   ├── Pods-RunnerTests-acknowledgements.plist
+│       │   ├── Pods-RunnerTests-dummy.m
+│       │   ├── Pods-RunnerTests-umbrella.h
+│       │   ├── Pods-RunnerTests.debug.xcconfig
+│       │   ├── Pods-RunnerTests.modulemap
+│       │   ├── Pods-RunnerTests.profile.xcconfig
+│       │   └── Pods-RunnerTests.release.xcconfig
+│       ├── PromisesObjC
+│       │   ├── PromisesObjC-Info.plist
+│       │   ├── PromisesObjC-dummy.m
+│       │   ├── PromisesObjC-umbrella.h
+│       │   ├── PromisesObjC.debug.xcconfig
+│       │   ├── PromisesObjC.modulemap
+│       │   ├── PromisesObjC.release.xcconfig
+│       │   └── ResourceBundle-FBLPromises_Privacy-PromisesObjC-Info.plist
+│       ├── firebase_core
+│       │   ├── firebase_core-Info.plist
+│       │   ├── firebase_core-dummy.m
+│       │   ├── firebase_core-prefix.pch
+│       │   ├── firebase_core-umbrella.h
+│       │   ├── firebase_core.debug.xcconfig
+│       │   ├── firebase_core.modulemap
+│       │   └── firebase_core.release.xcconfig
+│       ├── flutter_secure_storage_macos
+│       │   ├── ResourceBundle-flutter_secure_storage_macos-flutter_secure_storage_macos-Info.plist
+│       │   ├── flutter_secure_storage_macos-Info.plist
+│       │   ├── flutter_secure_storage_macos-dummy.m
+│       │   ├── flutter_secure_storage_macos-prefix.pch
+│       │   ├── flutter_secure_storage_macos-umbrella.h
+│       │   ├── flutter_secure_storage_macos.debug.xcconfig
+│       │   ├── flutter_secure_storage_macos.modulemap
+│       │   └── flutter_secure_storage_macos.release.xcconfig
+│       ├── path_provider_foundation
+│       │   ├── ResourceBundle-path_provider_foundation_privacy-path_provider_foundation-Info.plist
+│       │   ├── path_provider_foundation-Info.plist
+│       │   ├── path_provider_foundation-dummy.m
+│       │   ├── path_provider_foundation-prefix.pch
+│       │   ├── path_provider_foundation-umbrella.h
+│       │   ├── path_provider_foundation.debug.xcconfig
+│       │   ├── path_provider_foundation.modulemap
+│       │   └── path_provider_foundation.release.xcconfig
+│       └── shared_preferences_foundation
+│           ├── ResourceBundle-shared_preferences_foundation_privacy-shared_preferences_foundation-Info.plist
+│           ├── shared_preferences_foundation-Info.plist
+│           ├── shared_preferences_foundation-dummy.m
+│           ├── shared_preferences_foundation-prefix.pch
+│           ├── shared_preferences_foundation-umbrella.h
+│           ├── shared_preferences_foundation.debug.xcconfig
+│           ├── shared_preferences_foundation.modulemap
+│           └── shared_preferences_foundation.release.xcconfig
+├── Runner
+│   ├── AppDelegate.swift
+│   ├── Assets.xcassets
+│   │   └── AppIcon.appiconset
+│   │       ├── Contents.json
+│   │       ├── app_icon_1024.png
+│   │       ├── app_icon_128.png
+│   │       ├── app_icon_16.png
+│   │       ├── app_icon_256.png
+│   │       ├── app_icon_32.png
+│   │       ├── app_icon_512.png
+│   │       └── app_icon_64.png
+│   ├── Base.lproj
+│   │   └── MainMenu.xib
+│   ├── Configs
+│   │   ├── AppInfo.xcconfig
+│   │   ├── Debug.xcconfig
+│   │   ├── Release.xcconfig
+│   │   └── Warnings.xcconfig
+│   ├── DebugProfile.entitlements
+│   ├── GoogleService-Info.plist
+│   ├── Info.plist
+│   ├── MainFlutterWindow.swift
+│   └── Release.entitlements
+├── Runner.xcodeproj
+│   ├── project.pbxproj
+│   ├── project.xcworkspace
+│   │   └── xcshareddata
+│   │       ├── IDEWorkspaceChecks.plist
+│   │       └── swiftpm
+│   │           └── configuration
+│   ├── xcshareddata
+│   │   └── xcschemes
+│   │       └── Runner.xcscheme
+│   └── xcuserdata
+│       └── ckyony.xcuserdatad
+│           └── xcschemes
+│               └── xcschememanagement.plist
+├── Runner.xcworkspace
+│   ├── contents.xcworkspacedata
+│   ├── xcshareddata
+│   │   ├── IDEWorkspaceChecks.plist
+│   │   └── swiftpm
+│   │       └── configuration
+│   └── xcuserdata
+│       └── ckyony.xcuserdatad
+│           └── UserInterfaceState.xcuserstate
+└── RunnerTests
+    └── RunnerTests.swift
+
+89 directories, 284 files

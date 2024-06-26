@@ -1,0 +1,448 @@
+= Notes 
+
+== Tools
+
+- melos 
+- state management: riverpod 
+- dependency injection: riverpod
+- authentication : firebase auth
+- authentication ui: firebase ui
+- realtime database: cloud firestore
+- hosting: firebase hosting
+- serialization: freezed
+- routing: go router
+- fixture: faker 
+- ui table:  syncfusion 
+
+=== Melos  based-setup 
+
+--
+dart pub global activate melos
+mkdir -p apps/{pharmacy}
+mkdir -p packages/{flora,mag} 
+--
+
+
+- Edit ../pubspec.yaml
+--
+name: magfx
+environment:
+  sdk: '>=3.0.0 < 4.0.0'
+dev_dependencies:
+  melos: ^6.0.0
+--
+
+
+- Edit ../melos.yaml
+--
+name: magfx
+packages:
+  - apps/**
+  - packages/**
+--
+
+== Create the pharmacy apps
+
+flutter create --org com.changamuka --project-name pharmacy apps/pharmacy
+
+- Add melos command to run the application 
+
+. ../melos.yaml
+[source, yaml]
+--
+scripts:
+  pub:get:
+    run: melos exec -- "flutter pub get"
+  pharmacy:chrome
+    description: Run the pharmacy app
+    run: cd apps/pharmacy && flutter run -d chrome 
+--
+
+- check that the app can run in chrome, macos
+cd apps/pharmacy && flutter run -d chrome
+cd apps/pharmacy && flutter run -d macos
+cd apps/pharmacy && flutter run -d ios
+cd apps/pharmacy && flutter run -d android
+
+
+== BDD setup
+
+.add dev_dependencies 
+--
+flutter pub add --dev build_runner
+flutter pub add --dev bdd_widget_test
+--
+
+.edit ../apps/pharmacy/test/counter.feature folder
+--
+Feature: Counter
+    Scenario: Initial counter value is 0
+        Given the app is running
+        Then I see {'0'} text
+--
+
+.run the test 
+--
+flutter test 
+--
+
+.You should see this output
+--
+pharmacy git:(1-bdd-setup) ✗ flutter test        
+00:01 +2: All tests passed!   
+--
+
+- Split the lib/main.dart in 3 files
+ lib/main.dart 
+ lib/app.dart 
+ lib/feature/counter/show_page.dart
+
+
+- Add decrement feature
+--
+Feature: Counter
+    Scenario: Initial counter value is 0
+        Given the app is running
+        Then I see {'0'} text
+-- 
+
+- CounterShowPage after refactor
+
+[code, dart]
+----
+import 'package:flutter/material.dart';
+
+class CounterShowPage extends StatefulWidget {
+  const CounterShowPage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<CounterShowPage> createState() => _CounterShowPageState();
+}
+
+class _CounterShowPageState extends State<CounterShowPage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('The counter current value is now:'),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: _decrementCounter,
+              child: const Icon(Icons.remove),
+            ),
+            ElevatedButton(
+              onPressed: _incrementCounter,
+              child: const Icon(Icons.add),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+----
+
+== Riverpod setup
+
+.Goal: 
+- Separate the UI code with the state (counter value)
+- implement reset feature
+
+--
+flutter pub add flutter_riverpod
+flutter pub add riverpod_annotation
+flutter pub add dev:riverpod_generator
+flutter pub add dev:build_runner
+flutter pub add dev:custom_lint
+flutter pub add dev:riverpod_lint
+--
+
+----
+Feature: Counter
+  Background: 
+    Given the app is running
+
+  Scenario: Reset 
+    When I tap the reset button
+    Then I see {'0'} text
+----
+
+
+== Local storage
+
+.Goal
+- Introduce repository pattern
+- Introduce container.overrides between dev,test,stagging,prod
+- Introduce mockail vs mockito
+- show benefits by using shared_preferences and flutter_secure_storage
+
+NOTE: you mock dependencies and not the system under testing.
+
+
+
+== Local Storage - part 2
+
+.Goal
+- introduce model 
+
+
+---
+  Scenario: Save and display the timestamp of when the counter value was saved
+    Given I increment the counter {5} times
+    And I save the current counter value at {'13:30'}
+    And I decrement the counter {2} times
+    When I retrieve the saved counter value
+    Then I see {'3'}
+    And I see {'The counter value at 13:30 was'}
+---
+
+- start with mutable counter
+- use tojson/fromJson manual
+- introduce Freezed
+-  
+
+== local storage integration test
+
+.Goal
+- introduce bdd_integration_test
+
+.Add integration_test dependency to the pubspec.yaml file:
+--
+flutter pub add 'dev:integration_test:{"sdk":"flutter"}'
+--
+
+.Modify build.yaml file to support code generation in the integration_test folder
+[code, yaml]
+--
+targets:
+  $default:
+    sources:
+      - integration_test/**   # By default, build runner will not generate code in the integration folder
+      - test/**               # so we override paths for code generation here
+      - lib/**
+      - $package$
+    builders:
+      bdd_widget_test|featureBuilder:
+        options:
+          # stepFolderName: bdd_steps
+          stepFolderName: ../test/step # this trick is required to share steps between widget and integration tests
+          # testMethodName: customTestMethodName
+          include: package:bdd_widget_test/bdd_options.yaml # you may add defaul external steps with this line
+          externalSteps:                                    # or list only steps that you need
+            - package:bdd_widget_test/step/i_see_text.dart
+            - package:bdd_widget_test/step/i_dont_see_text.dart
+            - package:bdd_widget_test/step/i_see_multiple_texts.dart
+            - package:bdd_widget_test/step/i_tap_text.dart
+            - package:bdd_widget_test/step/i_see_icon.dart
+            - package:bdd_widget_test/step/i_dont_see_icon.dart
+            - package:bdd_widget_test/step/i_tap_icon.dart
+            - package:bdd_widget_test/step/i_see_rich_text.dart
+            - package:bdd_widget_test/step/i_dont_see_rich_text.dart
+            - package:bdd_widget_test/step/i_see_widget.dart
+            - package:bdd_widget_test/step/i_dont_see_widget.dart
+            - package:bdd_widget_test/step/i_see_exactly_widgets.dart
+            - package:bdd_widget_test/step/i_see_multiple_widgets.dart
+            - package:bdd_widget_test/step/i_enter_into_input_field.dart
+            - package:bdd_widget_test/step/i_see_disabled_elevated_button.dart
+            - package:bdd_widget_test/step/i_see_enabled_elevated_button.dart
+            - package:bdd_widget_test/step/i_wait.dart
+            - package:bdd_widget_test/step/i_dismiss_the_page.dart
+        generate_for:
+          - test/*.feature
+          - integration_test/*.feature
+
+--
+
+
+== Firebase
+
+.Goal
+- security rules:
+
+.install nodejs with asdf
+--
+--
+
+.install the Firebase CLI
+--
+npm install -g firebase-tools
+--
+
+.Install FlutterFire CLI
+--
+dart pub global activate flutterfire_cli
+--
+
+.Initialize Firebase in the app
+--
+flutter pub add firebase_core
+--
+
+.Edit lib/main.dart
+--
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+--
+
+.Rebuild the Flutter application
+--
+flutter run
+--
+
+.setup web
+--
+flutter run -d chrome
+--
+
+
+
+.setup ios 
+
+If you get this error 
+--
+Error: The plugin "firebase_core" requires a higher minimum iOS deployment version than your application is targeting.
+To build, increase your application's deployment target to at least 13.0 as described at https://docs.flutter.dev/deployment/ios
+Error running pod install
+Error launching application on iPhone 15.
+-- 
+
+Edit ios/Podfile
+--
+platform :ios, '15.0'
+--
+
+To fix error CocoaPods's specs repository is too out-of-date to satisfy dependencies.
+--
+pod repo update
+--
+
+
+
+.setup android
+--
+--
+NOTE: The emulator must at least 4098 GB as internal storage and on the SD card.
+See https://stackoverflow.com/questions/544461288
+
+.setup macos
+
+Edit macos/Podfile
+
+[code,ruby]
+----
+platform :osx, '10.14'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'ephemeral', 'Flutter-Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure \"flutter pub get\" is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Flutter-Generated.xcconfig, then run \"flutter pub get\""
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_macos_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_macos_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_macos_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.14'
+    end
+  end
+end
+----
+
+TODO: how to generate firebase_options in a different folder
+TODO: how to use different project from a Flutter app
+
+
+=== Firestore setup
+
+--
+flutter pub add cloud_firestore
+--
+
+.Improve iOS and macOS build times by including the pre-compiled framework
+--
+
+--
+
+
+=== Freezed setup
+
+--
+flutter pub add freezed_annotation
+flutter pub add dev:build_runner
+flutter pub add dev:freezed
+flutter pub add json_annotation
+flutter pub add dev:json_serializable
+--
+
+
+
+
+

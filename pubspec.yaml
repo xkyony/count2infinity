@@ -1,0 +1,44 @@
+name: pharmacy
+description: "Pharmacy with real-time inventory"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.2.2
+  firebase_core: ^3.1.0
+  cloud_firestore: ^5.0.1
+  fake_cloud_firestore: ^3.0.1
+  logger: ^2.3.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+  bdd_widget_test: ^1.7.4
+  build_runner: ^2.4.11
+  riverpod_generator: ^2.4.0
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+
+
+flutter:
+  uses-material-design: true
+
