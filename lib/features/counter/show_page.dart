@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/features/counter/controller.dart';
+import 'package:pharmacy/widgets/async_value_widget.dart';
 
 class CounterShowPage extends ConsumerWidget {
   const CounterShowPage({super.key, required this.title});
   final String title;
 
   @override
-  Widget build(BuildContext context, ref) {
-    final counter = ref.watch(counterControllerProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('At ${counter.at} The counter value is:'),
-            Text(
-              '${counter.value}',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: AsyncValueWidget(
+          value: ref.watch(currentCounterProvider),
+          data: (counter) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('At ${counter!.at} The counter value is:'),
+              Text(
+                '${counter.value}',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -45,9 +48,8 @@ class CounterShowPage extends ConsumerWidget {
               child: const Icon(Icons.refresh),
             ),
             ElevatedButton(
-              onPressed: () {
-                ref.read(counterControllerProvider.notifier).saveToLocalDisk();
-              },
+              onPressed:
+                  ref.read(counterControllerProvider.notifier).saveToLocalDisk,
               child: const Icon(Icons.save),
             ),
             ElevatedButton(

@@ -1,49 +1,46 @@
 import '../../services/model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Counter extends Model {
-  const Counter({
-    required this.value,
-    required this.at,
+part 'model.g.dart';
+part 'model.freezed.dart';
 
-  });
-  final int value;
-  final DateTime at;
+@freezed
+class Counter with _$Counter, Model {
+  static get collection => 'counter';
 
-  @override
-  String get collection => '';
-  
+  const Counter._();
 
+  const factory Counter({
+    required String id,
+    required int value,
+    required DateTime at,
+  }) = _Counter;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      'at': at.toIso8601String(),
-    };
-  }
+  factory Counter.initial() => Counter(
+        id: 'current',
+        value: 0,
+        at: DateTime.now(),
+      );
 
-  static Counter fromJson(Map<String, dynamic> json) {
-    return Counter(
-      value: json['value'],
-      at: DateTime.parse(json['at']),
-    );
-  }
+  factory Counter.fromJson(Map<String, dynamic> json) =>
+      _$CounterFromJson(json);
 
   Counter decrement() {
-    return Counter(
+    return copyWith(
       value: value - 1,
       at: DateTime.now(),
     );
   }
 
   Counter increment() {
-    return Counter(
+    return copyWith(
       value: value + 1,
       at: DateTime.now(),
     );
   }
 
   Counter reset() {
-    return Counter(
+    return copyWith(
       value: 0,
       at: DateTime.now(),
     );

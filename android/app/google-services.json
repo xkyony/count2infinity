@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:582674881640:android:dd5590307cc6e26c092fdd",
+        "android_client_info": {
+          "package_name": "com.changamuka.count2infinity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9gsgFQ_UbvbxTqrzoUKjf4yn8t29mJr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:582674881640:android:046b0c7599b21190092fdd",
         "android_client_info": {
-          "package_name": "com.changamuka.pharmacy"
+          "package_name": "com.changamuka.magasin"
         }
       },
       "oauth_client": [],
@@ -28,7 +47,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:582674881640:android:a15d52970526e7e4092fdd",
         "android_client_info": {
-          "package_name": "com.changamuka.pharmacy"
+          "package_name": "com.example.pharmacy"
         }
       },
       "oauth_client": [],

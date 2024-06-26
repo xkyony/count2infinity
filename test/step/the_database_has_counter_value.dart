@@ -8,6 +8,6 @@ Future<void> theDatabaseHasCounterValue(WidgetTester tester, num value) async {
   final element = tester.element(find.byType(MyApp));
   final container = ProviderScope.containerOf(element);
   // retrieve the counter value in the database
-  final counter = await container.read(counterProvider.future);
+  final counter = await container.read(currentCounterProvider.future);
   expect(counter.value, equals(value));
 }

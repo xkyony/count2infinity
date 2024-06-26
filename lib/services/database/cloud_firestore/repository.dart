@@ -20,6 +20,7 @@ class FirebaseRepository<T extends Model> extends Repository<T> {
   }) : logger = logger ?? Logger();
 
   CollectionReference get query {
+    print('Instance at ${DateTime.now()} $instance');
     return instance.collection(collection).withConverter(
           toFirestore: (model, _) => (model as Model).toJson(),
           fromFirestore: (snapshot, options) {
@@ -32,6 +33,7 @@ class FirebaseRepository<T extends Model> extends Repository<T> {
               T model = fromJson(document);
               return model;
             } catch (e) {
+              print('Problem');
               logger.e(collection);
               logger.e(snapshot.id);
               logger.e(e.toString());
@@ -123,12 +125,19 @@ class FirebaseRepository<T extends Model> extends Repository<T> {
   @override
   Future<T?> fetch(String id) async {
     try {
+      // print('FirebaseRepository::fetch');
+      // print('collection: $collection');
+      // print('id $id');
+
       final snapshot = await query.doc(id).get();
+      print('After snapshot $snapshot');
       if (!snapshot.exists) {
+        print('snapshot does not exists');
         logger.w(
             'The document with id:$id was not found in the $collection collection.');
         return null;
       }
+      print('snapshot ${snapshot.data()}');
       return snapshot.data() as T;
     } on FirebaseException catch (e) {
       debugPrint(e.message);

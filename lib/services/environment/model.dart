@@ -25,6 +25,6 @@ enum Env {
 
   @override
   String toString() {
-    return 'Environment useEmulator: $useEmulator, useMock: $useMock';
+    return 'Env.$name useEmulator: $useEmulator, useMock: $useMock';
   }
 }
