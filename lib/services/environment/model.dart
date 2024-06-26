@@ -1,6 +1,6 @@
 enum Env {
   dev(name: 'DEV', useEmulator: true, useMock: false),
-  test(name: 'TEST', useEmulator: true, useMock: false),
+  test(name: 'TEST', useEmulator: false, useMock: true),
   integrationTest(name: 'INTEGRATION_TEST', useEmulator: true, useMock: false),
   stag(name: 'STAG', useEmulator: true, useMock: false),
   prod(name: 'PROD', useEmulator: true, useMock: false),

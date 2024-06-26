@@ -1,6 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pharmacy/app.dart';
+import 'package:pharmacy/features/counter/model.dart';
+import 'package:pharmacy/features/counter/repository.dart';
+import 'package:pharmacy/services/environment/provider.dart';
 import 'package:pharmacy/services/local_storage/repository.dart';
 import 'package:pharmacy/services/local_storage/shared_preferences/repository.dart';
 
@@ -8,6 +11,11 @@ Future<void> theAppIsRunning(WidgetTester tester) async {
   final container = ProviderContainer();
   final localStorageRepository =
       await container.read(sharedPreferencesRepositoryProvider.future);
+  // final firestore = container.read(firebaseFirestoreProvider);
+  // set the initial value to 0
+  final repo = container.read(counterRepoProvider);
+  await repo.add(Counter.initial());
+  // final counter = await repo.fetchCurrentCounter();
 
   final providerContainer = createProviderContainer(
     overrides: [
@@ -21,6 +29,7 @@ Future<void> theAppIsRunning(WidgetTester tester) async {
       child: const MyApp(),
     ),
   );
+  await tester.pumpAndSettle();
 }
 
 ProviderContainer createProviderContainer({

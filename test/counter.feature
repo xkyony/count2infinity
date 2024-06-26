@@ -1,6 +1,7 @@
 Feature: Counter::
   Background: 
     Given the app is running
+    # And the initial value is set to 0
 
   After:
     Then clean up
