@@ -23,6 +23,10 @@ mixin _$Counter {
   String get id => throw _privateConstructorUsedError;
   int get value => throw _privateConstructorUsedError;
   DateTime get at => throw _privateConstructorUsedError;
+  int get minValue => throw _privateConstructorUsedError;
+  DateTime get minAt => throw _privateConstructorUsedError;
+  int get maxValue => throw _privateConstructorUsedError;
+  DateTime get maxAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +38,14 @@ abstract class $CounterCopyWith<$Res> {
   factory $CounterCopyWith(Counter value, $Res Function(Counter) then) =
       _$CounterCopyWithImpl<$Res, Counter>;
   @useResult
-  $Res call({String id, int value, DateTime at});
+  $Res call(
+      {String id,
+      int value,
+      DateTime at,
+      int minValue,
+      DateTime minAt,
+      int maxValue,
+      DateTime maxAt});
 }
 
 /// @nodoc
@@ -53,6 +64,10 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
     Object? id = null,
     Object? value = null,
     Object? at = null,
+    Object? minValue = null,
+    Object? minAt = null,
+    Object? maxValue = null,
+    Object? maxAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,6 +82,22 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
           ? _value.at
           : at // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      minValue: null == minValue
+          ? _value.minValue
+          : minValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      minAt: null == minAt
+          ? _value.minAt
+          : minAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      maxValue: null == maxValue
+          ? _value.maxValue
+          : maxValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxAt: null == maxAt
+          ? _value.maxAt
+          : maxAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -78,7 +109,14 @@ abstract class _$$CounterImplCopyWith<$Res> implements $CounterCopyWith<$Res> {
       __$$CounterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, int value, DateTime at});
+  $Res call(
+      {String id,
+      int value,
+      DateTime at,
+      int minValue,
+      DateTime minAt,
+      int maxValue,
+      DateTime maxAt});
 }
 
 /// @nodoc
@@ -95,6 +133,10 @@ class __$$CounterImplCopyWithImpl<$Res>
     Object? id = null,
     Object? value = null,
     Object? at = null,
+    Object? minValue = null,
+    Object? minAt = null,
+    Object? maxValue = null,
+    Object? maxAt = null,
   }) {
     return _then(_$CounterImpl(
       id: null == id
@@ -109,6 +151,22 @@ class __$$CounterImplCopyWithImpl<$Res>
           ? _value.at
           : at // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      minValue: null == minValue
+          ? _value.minValue
+          : minValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      minAt: null == minAt
+          ? _value.minAt
+          : minAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      maxValue: null == maxValue
+          ? _value.maxValue
+          : maxValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxAt: null == maxAt
+          ? _value.maxAt
+          : maxAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -116,7 +174,14 @@ class __$$CounterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CounterImpl extends _Counter {
-  const _$CounterImpl({required this.id, required this.value, required this.at})
+  const _$CounterImpl(
+      {required this.id,
+      required this.value,
+      required this.at,
+      required this.minValue,
+      required this.minAt,
+      required this.maxValue,
+      required this.maxAt})
       : super._();
 
   factory _$CounterImpl.fromJson(Map<String, dynamic> json) =>
@@ -128,10 +193,18 @@ class _$CounterImpl extends _Counter {
   final int value;
   @override
   final DateTime at;
+  @override
+  final int minValue;
+  @override
+  final DateTime minAt;
+  @override
+  final int maxValue;
+  @override
+  final DateTime maxAt;
 
   @override
   String toString() {
-    return 'Counter(id: $id, value: $value, at: $at)';
+    return 'Counter(id: $id, value: $value, at: $at, minValue: $minValue, minAt: $minAt, maxValue: $maxValue, maxAt: $maxAt)';
   }
 
   @override
@@ -141,12 +214,19 @@ class _$CounterImpl extends _Counter {
             other is _$CounterImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.at, at) || other.at == at));
+            (identical(other.at, at) || other.at == at) &&
+            (identical(other.minValue, minValue) ||
+                other.minValue == minValue) &&
+            (identical(other.minAt, minAt) || other.minAt == minAt) &&
+            (identical(other.maxValue, maxValue) ||
+                other.maxValue == maxValue) &&
+            (identical(other.maxAt, maxAt) || other.maxAt == maxAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, value, at);
+  int get hashCode =>
+      Object.hash(runtimeType, id, value, at, minValue, minAt, maxValue, maxAt);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +246,11 @@ abstract class _Counter extends Counter {
   const factory _Counter(
       {required final String id,
       required final int value,
-      required final DateTime at}) = _$CounterImpl;
+      required final DateTime at,
+      required final int minValue,
+      required final DateTime minAt,
+      required final int maxValue,
+      required final DateTime maxAt}) = _$CounterImpl;
   const _Counter._() : super._();
 
   factory _Counter.fromJson(Map<String, dynamic> json) = _$CounterImpl.fromJson;
@@ -177,6 +261,14 @@ abstract class _Counter extends Counter {
   int get value;
   @override
   DateTime get at;
+  @override
+  int get minValue;
+  @override
+  DateTime get minAt;
+  @override
+  int get maxValue;
+  @override
+  DateTime get maxAt;
   @override
   @JsonKey(ignore: true)
   _$$CounterImplCopyWith<_$CounterImpl> get copyWith =>
