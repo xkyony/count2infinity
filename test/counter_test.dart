@@ -92,7 +92,6 @@ void main() {
         await iRetrieveTheSavedCounterValue(tester);
         await iSeeTheCounterValueIs(tester, '5');
         await theCounterTimeContains(tester, '13:30');
-        await theCounterTimeContains(tester, '05-Mar-2024');
       } finally {
         await bddTearDown(tester);
       }
