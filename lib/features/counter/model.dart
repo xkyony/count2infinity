@@ -14,6 +14,7 @@ class Counter with _$Counter, Model {
 
   const factory Counter({
     required String id,
+    required String name,
     required int value,
     required DateTime at,
     required int minValue,
@@ -24,6 +25,7 @@ class Counter with _$Counter, Model {
 
   factory Counter.initial() => Counter(
         id: 'current',
+        name: 'Current Counter',
         value: 0,
         at: DateTime.now(),
         maxValue: 0,

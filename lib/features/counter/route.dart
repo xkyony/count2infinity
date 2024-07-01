@@ -16,7 +16,7 @@ final counterRoute = GoRoute(
       path: ':id',
       builder: (context, state) {
         final id = state.pathParameters['id']!;
-        return CounterShowPage(title: 'Current counter');
+        return CounterShowPage(id: id);
       },
       routes: [
         GoRoute(

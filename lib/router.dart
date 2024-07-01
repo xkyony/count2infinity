@@ -3,13 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'features/counter/index_page.dart';
 import 'features/counter/route.dart';
+import 'features/counter/show_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const CounterIndexPage(),
+        builder: (context, state) => const CounterShowPage(id: 'current'),
         routes: [
           counterRoute,
         ],

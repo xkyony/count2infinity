@@ -21,6 +21,7 @@ Counter _$CounterFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Counter {
   String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get value => throw _privateConstructorUsedError;
   DateTime get at => throw _privateConstructorUsedError;
   int get minValue => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $CounterCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String name,
       int value,
       DateTime at,
       int minValue,
@@ -62,6 +64,7 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? value = null,
     Object? at = null,
     Object? minValue = null,
@@ -73,6 +76,10 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -111,6 +118,7 @@ abstract class _$$CounterImplCopyWith<$Res> implements $CounterCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String name,
       int value,
       DateTime at,
       int minValue,
@@ -131,6 +139,7 @@ class __$$CounterImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? value = null,
     Object? at = null,
     Object? minValue = null,
@@ -142,6 +151,10 @@ class __$$CounterImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -176,6 +189,7 @@ class __$$CounterImplCopyWithImpl<$Res>
 class _$CounterImpl extends _Counter {
   const _$CounterImpl(
       {required this.id,
+      required this.name,
       required this.value,
       required this.at,
       required this.minValue,
@@ -189,6 +203,8 @@ class _$CounterImpl extends _Counter {
 
   @override
   final String id;
+  @override
+  final String name;
   @override
   final int value;
   @override
@@ -204,7 +220,7 @@ class _$CounterImpl extends _Counter {
 
   @override
   String toString() {
-    return 'Counter(id: $id, value: $value, at: $at, minValue: $minValue, minAt: $minAt, maxValue: $maxValue, maxAt: $maxAt)';
+    return 'Counter(id: $id, name: $name, value: $value, at: $at, minValue: $minValue, minAt: $minAt, maxValue: $maxValue, maxAt: $maxAt)';
   }
 
   @override
@@ -213,6 +229,7 @@ class _$CounterImpl extends _Counter {
         (other.runtimeType == runtimeType &&
             other is _$CounterImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.at, at) || other.at == at) &&
             (identical(other.minValue, minValue) ||
@@ -225,8 +242,8 @@ class _$CounterImpl extends _Counter {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, value, at, minValue, minAt, maxValue, maxAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, value, at, minValue, minAt, maxValue, maxAt);
 
   @JsonKey(ignore: true)
   @override
@@ -245,6 +262,7 @@ class _$CounterImpl extends _Counter {
 abstract class _Counter extends Counter {
   const factory _Counter(
       {required final String id,
+      required final String name,
       required final int value,
       required final DateTime at,
       required final int minValue,
@@ -257,6 +275,8 @@ abstract class _Counter extends Counter {
 
   @override
   String get id;
+  @override
+  String get name;
   @override
   int get value;
   @override

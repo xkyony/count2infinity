@@ -9,6 +9,7 @@ part of 'model.dart';
 _$CounterImpl _$$CounterImplFromJson(Map<String, dynamic> json) =>
     _$CounterImpl(
       id: json['id'] as String,
+      name: json['name'] as String,
       value: (json['value'] as num).toInt(),
       at: DateTime.parse(json['at'] as String),
       minValue: (json['minValue'] as num).toInt(),
@@ -20,6 +21,7 @@ _$CounterImpl _$$CounterImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CounterImplToJson(_$CounterImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'name': instance.name,
       'value': instance.value,
       'at': instance.at.toIso8601String(),
       'minValue': instance.minValue,

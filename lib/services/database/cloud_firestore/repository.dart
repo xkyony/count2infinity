@@ -138,6 +138,7 @@ class FirebaseRepository<T extends Model> extends Repository<T> {
 
   @override
   Stream<T?> watch(String id) {
+    // print('watch id: id');
     if (id.isEmpty) {
       return Stream.value(null);
     }
