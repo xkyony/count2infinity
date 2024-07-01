@@ -21,6 +21,20 @@ final currentCounterProvider = AutoDisposeStreamProvider<Counter?>.internal(
 );
 
 typedef CurrentCounterRef = AutoDisposeStreamProviderRef<Counter?>;
+String _$counterListHash() => r'69f27115dfd2830ca59585bcdf6cbf974f7110fe';
+
+/// See also [counterList].
+@ProviderFor(counterList)
+final counterListProvider = AutoDisposeStreamProvider<List<Counter>>.internal(
+  counterList,
+  name: r'counterListProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$counterListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CounterListRef = AutoDisposeStreamProviderRef<List<Counter>>;
 String _$counterControllerHash() => r'00fccf558d64ab161fd37f1a76eaae420423d38d';
 
 /// See also [CounterController].

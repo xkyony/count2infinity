@@ -2,6 +2,7 @@ import 'dart:math';
 
 import '../../services/model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'model.g.dart';
 part 'model.freezed.dart';
@@ -22,6 +23,8 @@ class Counter with _$Counter, Model {
     required int maxValue,
     required DateTime maxAt,
   }) = _Counter;
+
+  String get timestamps => DateFormat('HH:mm dd-MMM-yy').format(at);
 
   factory Counter.initial() => Counter(
         id: 'current',

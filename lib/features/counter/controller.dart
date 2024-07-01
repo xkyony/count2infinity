@@ -12,6 +12,11 @@ Stream<Counter?> currentCounter(CurrentCounterRef ref) {
 }
 
 @riverpod
+Stream<List<Counter>> counterList(CounterListRef ref) {
+  return ref.read(counterRepoProvider).watchList;
+}
+
+@riverpod
 class CounterController extends _$CounterController {
   @override
   Future<Counter> build() async {
