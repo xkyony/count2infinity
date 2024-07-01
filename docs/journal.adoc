@@ -367,7 +367,7 @@ See https://stackoverflow.com/questions/544461288
 Edit macos/Podfile
 
 [code,ruby]
-----
+--
 platform :osx, '10.14'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
@@ -414,7 +414,7 @@ post_install do |installer|
     end
   end
 end
-----
+--
 
 TODO: how to generate firebase_options in a different folder
 TODO: how to use different project from a Flutter app
@@ -441,6 +441,27 @@ flutter pub add dev:freezed
 flutter pub add j:son_annotation
 flutter pub add dev:json_serializable
 --
+
+=== Go router
+
+.Goal
+--
+- manage multiple counters
+--
+
+ 
+==== counters index/show page
+
+.Feature
+--
+Feature: Counter::
+  Background: 
+    Given the app is running
+    And I visit {'/counters/current'} page
+--
+
+
+
 
 
 
