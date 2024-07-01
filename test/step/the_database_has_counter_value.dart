@@ -1,13 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pharmacy/app.dart';
 import 'package:pharmacy/features/counter/repository.dart';
 
+import 'utils.dart';
+
 /// Usage: the database has counter value {5}
+/// retrieve the counter value in the database
 Future<void> theDatabaseHasCounterValue(WidgetTester tester, num value) async {
-  final element = tester.element(find.byType(MyApp));
-  final container = ProviderScope.containerOf(element);
-  // retrieve the counter value in the database
+  final container = tester.container;
   final counter =
       await container.read(counterRepoProvider).fetchCurrentCounter();
   expect(counter.value, equals(value));

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import './step/the_app_is_running.dart';
-import './step/i_visit_page.dart';
+import './step/i_visit.dart';
 import './step/clean_up.dart';
 import './step/i_see_the_counter_value_is.dart';
 import './step/i_tap_the_increment_button.dart';
@@ -27,7 +27,7 @@ void main() {
   group('''Counter::''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await theAppIsRunning(tester);
-      await iVisitPage(tester, '/counters/current');
+      await iVisit(tester, '/counters/current');
     }
 
     Future<void> bddTearDown(WidgetTester tester) async {

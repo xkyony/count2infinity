@@ -1,7 +1,7 @@
 Feature: Counter::
   Background: 
     Given the app is running
-    And I visit {'/counters/current'} page
+    And I visit {'/counters/current'}
 
   After:
     Then clean up

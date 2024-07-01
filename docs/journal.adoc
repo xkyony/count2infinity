@@ -460,7 +460,13 @@ Feature: Counter::
     And I visit {'/counters/current'} page
 --
 
+flutter pub add go_router
 
+
+NOTE
+. start with CounterShowPage
+. add CounterIndexPage
+. add counter/routes.dart
 
 
 

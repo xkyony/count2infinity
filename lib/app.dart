@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/initialization.dart';
 
-import 'features/counter/show_page.dart';
+import 'router.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
     return AppInitialization(
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Counter',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const CounterShowPage(
-          title: 'Counter Demo Page',
-        ),
+        routerConfig: router,
       ),
     );
   }
