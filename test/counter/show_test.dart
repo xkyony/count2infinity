@@ -4,27 +4,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import './step/the_app_is_running.dart';
-import './step/i_visit.dart';
-import './step/clean_up.dart';
-import './step/i_see_the_counter_value_is.dart';
-import './step/i_tap_the_increment_button.dart';
-import './step/i_tap_the_decrement_button.dart';
-import './step/i_tap_the_reset_button.dart';
-import './step/i_increment_the_counter_times.dart';
-import './step/i_save_the_counter.dart';
-import './step/i_retrieve_the_saved_counter_value.dart';
-import './step/i_save_the_current_counter_value_at.dart';
-import './step/i_decrement_the_counter_times.dart';
-import './step/the_counter_time_contains.dart';
-import './step/the_database_has_counter_value.dart';
-import './step/i_save_the_current_counter_value.dart';
-import './step/i_see_the_counter_max_value.dart';
-import './step/i_reset_the_counter.dart';
-import './step/i_see_the_counter_min_value.dart';
+import './../step/the_app_is_running.dart';
+import './../step/i_visit.dart';
+import './../step/clean_up.dart';
+import './../step/i_see_the_counter_value_is.dart';
+import './../step/i_tap_the_increment_button.dart';
+import './../step/i_tap_the_decrement_button.dart';
+import './../step/i_tap_the_reset_button.dart';
+import './../step/i_increment_the_counter_times.dart';
+import './../step/i_save_the_counter.dart';
+import './../step/i_retrieve_the_saved_counter_value.dart';
+import './../step/i_save_the_current_counter_value_at.dart';
+import './../step/i_decrement_the_counter_times.dart';
+import './../step/the_counter_time_contains.dart';
+import './../step/the_database_has_counter_value.dart';
+import './../step/i_save_the_current_counter_value.dart';
+import './../step/i_see_the_counter_max_value.dart';
+import './../step/i_reset_the_counter.dart';
+import './../step/i_see_the_counter_min_value.dart';
 
 void main() {
-  group('''Counter::''', () {
+  group('''The user can''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await theAppIsRunning(tester);
       await iVisit(tester, '/counters/current');
@@ -34,7 +34,7 @@ void main() {
       await cleanUp(tester);
     }
 
-    testWidgets('''Initial value is 0''', (tester) async {
+    testWidgets('''see the initial value''', (tester) async {
       try {
         await bddSetUp(tester);
         await iSeeTheCounterValueIs(tester, '0');
@@ -42,7 +42,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Increment''', (tester) async {
+    testWidgets('''increment the counter''', (tester) async {
       try {
         await bddSetUp(tester);
         await iTapTheIncrementButton(tester);
@@ -51,7 +51,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Decrement''', (tester) async {
+    testWidgets('''decrement the counter''', (tester) async {
       try {
         await bddSetUp(tester);
         await iTapTheDecrementButton(tester);
@@ -60,7 +60,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Reset''', (tester) async {
+    testWidgets('''reset the counter''', (tester) async {
       try {
         await bddSetUp(tester);
         await iTapTheResetButton(tester);
@@ -69,7 +69,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Local Storage Save and retrieve''', (tester) async {
+    testWidgets('''save to and retrieve from local storage''', (tester) async {
       try {
         await bddSetUp(tester);
         await iIncrementTheCounterTimes(tester, 5);
@@ -83,8 +83,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets(
-        '''Save and display the timestamp of when the counter value was saved''',
+    testWidgets('''display the timestamp of when the counter value was saved''',
         (tester) async {
       try {
         await bddSetUp(tester);
@@ -98,7 +97,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Save and sync in realtime with external database''',
+    testWidgets('''sync the counter in realtime with external database''',
         (tester) async {
       try {
         await bddSetUp(tester);
@@ -115,7 +114,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Save and sync in realtime after saving to local storage''',
+    testWidgets('''sync in realtime after saving to local storage''',
         (tester) async {
       try {
         await bddSetUp(tester);
@@ -128,7 +127,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Track the max value''', (tester) async {
+    testWidgets('''track the max value''', (tester) async {
       try {
         await bddSetUp(tester);
         await iIncrementTheCounterTimes(tester, 5);
@@ -150,7 +149,7 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''Track the min value''', (tester) async {
+    testWidgets('''track the min value''', (tester) async {
       try {
         await bddSetUp(tester);
         await iIncrementTheCounterTimes(tester, 5);

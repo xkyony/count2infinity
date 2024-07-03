@@ -1,4 +1,4 @@
-Feature: Counter::
+Feature: The user can  
   Background: 
     Given the app is running
     And I visit {'/counters/current'}
@@ -6,22 +6,22 @@ Feature: Counter::
   After:
     Then clean up
 
-  Scenario: Initial value is 0
+  Scenario: see the initial value
     Then I see the counter value is {'0'}
 
-  Scenario: Increment  
+  Scenario: increment the counter
     When I tap the increment button 
     Then I see the counter value is {'1'}
 
-  Scenario: Decrement 
+  Scenario: decrement the counter
     When I tap the decrement button
     Then I see the counter value is {'-1'}
 
-  Scenario: Reset 
+  Scenario: reset the counter
     When I tap the reset button
     Then I see the counter value is  {'0'}
   
-  Scenario: Local Storage Save and retrieve
+  Scenario: save to and retrieve from local storage 
     Given  I increment the counter {5} times
     Then I see the counter value is {'5'}
     And I save the counter
@@ -30,7 +30,7 @@ Feature: Counter::
     When I retrieve the saved counter value 
     Then I see the counter value is {'5'}
 
-  Scenario: Save and display the timestamp of when the counter value was saved
+  Scenario: display the timestamp of when the counter value was saved
     Given I increment the counter {5} times
     And I save the current counter value at {'2024-03-05 13:30'}
     And I decrement the counter {2} times
@@ -39,7 +39,7 @@ Feature: Counter::
     And the counter time contains {'13:30'}
     # And the counter time contains {'05-Mar-2024'}
 
-  Scenario: Save and sync in realtime with external database
+  Scenario: sync the counter in realtime with external database
     Given  I increment the counter {5} times
     And I see the counter value is {'5'}
     Then the database has counter value {5}
@@ -52,14 +52,14 @@ Feature: Counter::
     And I see the counter value is {'0'}
     And the database has counter value {0}
     
-  Scenario: Save and sync in realtime after saving to local storage
+  Scenario: sync in realtime after saving to local storage
     Given  I increment the counter {5} times
     And I save the current counter value
     And I decrement the counter {2} times
     When I retrieve the saved counter value
     Then the database has counter value {5}
 
-  Scenario: Track the max value
+  Scenario: track the max value
     When I increment the counter {5} times
     And I see the counter value is {'5'}
     Then I see the counter max value {'5'}
@@ -80,7 +80,7 @@ Feature: Counter::
     And I see the counter value is {'10'}
     Then I see the counter max value {'10'}
 
-  Scenario: Track the min value
+  Scenario: track the min value
     When I increment the counter {5} times
     And I see the counter value is {'5'}
     Then I see the counter min value {'0'}

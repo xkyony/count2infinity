@@ -54,4 +54,8 @@ class CounterController extends _$CounterController {
     final toBeSaved = counter.copyWith(at: time);
     await ref.read(counterRepoProvider).add(toBeSaved);
   }
+
+  add(Counter counter) async{
+    await ref.read(counterRepoProvider).add(counter);
+  }
 }
