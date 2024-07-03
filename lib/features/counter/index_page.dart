@@ -22,6 +22,7 @@ class CounterIndexPage extends ConsumerWidget {
             columns: const [
               DataColumn(label: Text('Name')),
               DataColumn(label: Text('Value')),
+              DataColumn(label: Text('')),
             ],
             rows: counters.map((counter) {
               return DataRow(
@@ -35,6 +36,17 @@ class CounterIndexPage extends ConsumerWidget {
                     onDoubleTap: () => context.go('/counters/${counter.id}'),
                   ),
                   DataCell(Text('${counter.value}')),
+                  DataCell(
+                    IconButton(
+                      key: Key('delete_button_${counter.id}'),
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        ref
+                            .read(counterControllerProvider.notifier)
+                            .delete(counter);
+                      },
+                    ),
+                  ),
                 ],
               );
             }).toList(),

@@ -55,7 +55,11 @@ class CounterController extends _$CounterController {
     await ref.read(counterRepoProvider).add(toBeSaved);
   }
 
-  add(Counter counter) async{
+  add(Counter counter) async {
     await ref.read(counterRepoProvider).add(counter);
+  }
+
+  delete(Counter counter) async {
+    await ref.read(counterRepoProvider).delete(counter.id);
   }
 }

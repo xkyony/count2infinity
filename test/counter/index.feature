@@ -32,3 +32,9 @@ Feature: The user can
     And I see {'New Counter'}
     And I see {'100'}
 
+  Scenario: delete a counter
+    Given I see {'2 Counters'}
+    And I see {'To be deleted counter'}
+    When  I tap the deleted button for {'To be deleted counter'}
+    Then I don't see {'To be deleted counter'}
+    And I see {'1 Counters'}

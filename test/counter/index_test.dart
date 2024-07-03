@@ -14,6 +14,8 @@ import './../step/i_double_tap.dart';
 import './../step/i_tap_icon.dart';
 import './../step/i_fill_in_with.dart';
 import './../step/i_tap_the_button.dart';
+import '../step/i_tap_the_deleted_button_for.dart';
+import './../step/i_dont_see.dart';
 
 void main() {
   group('''The user can''', () {
@@ -61,6 +63,18 @@ void main() {
         await iSee(tester, '3 Counters');
         await iSee(tester, 'New Counter');
         await iSee(tester, '100');
+      } finally {
+        await bddTearDown(tester);
+      }
+    });
+    testWidgets('''delete a counter''', (tester) async {
+      try {
+        await bddSetUp(tester);
+        await iSee(tester, '2 Counters');
+        await iSee(tester, 'To be deleted counter');
+        await iTapTheDeletedButtonFor(tester, 'To be deleted counter');
+        await iDontSee(tester, 'To be deleted counter');
+        await iSee(tester, '1 Counters');
       } finally {
         await bddTearDown(tester);
       }
