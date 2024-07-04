@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import './../step/the_app_is_running.dart';
+import './../step/the_app_has2_counters.dart';
 import './../step/i_visit.dart';
 import './../step/clean_up.dart';
 import './../step/i_see_the_counter_value_is.dart';
@@ -27,6 +28,7 @@ void main() {
   group('''The user can''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await theAppIsRunning(tester);
+      await theAppHas2Counters(tester);
       await iVisit(tester, '/counters/current');
     }
 

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pharmacy/features/counter/controller.dart';
 import 'package:pharmacy/features/counter/model.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:uuid/uuid.dart';
 
 class CounterNewPage extends HookConsumerWidget {
   const CounterNewPage({super.key});
@@ -12,6 +13,7 @@ class CounterNewPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final nameController = useTextEditingController();
     final valueController = TextEditingController();
+    const uuid = Uuid();
 
     return Scaffold(
       appBar: AppBar(
@@ -31,10 +33,10 @@ class CounterNewPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             TextField(
-              key: const Key('initial value'),
+              key: const Key('counter value'),
               controller: valueController,
               decoration: const InputDecoration(
-                labelText: 'Initial Value',
+                labelText: 'Counter Value',
               ),
               keyboardType: TextInputType.number,
             ),
@@ -46,7 +48,7 @@ class CounterNewPage extends HookConsumerWidget {
                   final name = nameController.text;
                   final value = int.tryParse(valueController.text) ?? 0;
                   final counter = Counter(
-                    id: UniqueKey().toString(),
+                    id: uuid.v4(),
                     name: name,
                     value: value,
                     at: DateTime.now(),

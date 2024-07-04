@@ -25,7 +25,7 @@ Feature: The user can
     Then I see {'Add New Counter'}
 
     When I fill in {'counter name'} with {'New Counter'}
-    And I fill in {'initial value'} with  {'100'} 
+    And I fill in {'counter value'} with  {'100'} 
     And I tap the {'Add Counter'} button
     
     Then I see {'3 Counters'}
@@ -38,3 +38,20 @@ Feature: The user can
     When  I tap the deleted button for {'To be deleted counter'}
     Then I don't see {'To be deleted counter'}
     And I see {'1 Counters'}
+
+  Scenario: edit a counter
+    Given I see {'Current Counter'}
+    When I tap the edit button for {'Current Counter'}
+    Then I see {'Edit Counter'}
+
+    When I fill in {'counter name'} with {'Edited Counter'}
+    And I fill in {'counter value'} with {'200'}
+    And I tap the {'Edit Counter'} button
+    
+    Then I don't see {'Current Counter'} 
+    And I see {'Edited Counter'}
+    And I see {'200'}
+    And I see {'2 Counters'}
+
+
+

@@ -10,7 +10,8 @@ Future<void> theAppHas2Counters(WidgetTester tester) async {
   final ref = tester.container;
   final repo = ref.read(counterRepoProvider);
   await repo.add(Counter.initial());
-  await repo.add(Counter.initial().copyWith(id: 'second', name: 'Secunda'));
+  await repo.add(
+      Counter.initial().copyWith(id: 'second', name: 'To be deleted counter'));
 
   await tester.pumpAndSettle();
 }

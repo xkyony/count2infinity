@@ -1,6 +1,7 @@
 Feature: The user can  
   Background: 
     Given the app is running
+    And the app has 2 counters
     And I visit {'/counters/current'}
 
   After:

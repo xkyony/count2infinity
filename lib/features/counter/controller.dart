@@ -11,6 +11,13 @@ Stream<Counter?> currentCounter(CurrentCounterRef ref) {
   return ref.read(counterRepoProvider).watchCurrentCounter();
 }
 
+@riverpod 
+Future<Counter?> counter(CounterRef ref, String id) async {
+  return await ref.read(counterRepoProvider).fetch(id);
+}
+
+
+
 @riverpod
 Stream<List<Counter>> counterList(CounterListRef ref) {
   return ref.read(counterRepoProvider).watchList;

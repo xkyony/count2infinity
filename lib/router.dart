@@ -6,6 +6,7 @@ import 'features/counter/route.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
+    initialLocation: '/counters',
     routes: [
       GoRoute(
         path: '/',

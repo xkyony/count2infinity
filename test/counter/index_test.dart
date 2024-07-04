@@ -14,8 +14,9 @@ import './../step/i_double_tap.dart';
 import './../step/i_tap_icon.dart';
 import './../step/i_fill_in_with.dart';
 import './../step/i_tap_the_button.dart';
-import '../step/i_tap_the_deleted_button_for.dart';
+import './../step/i_tap_the_deleted_button_for.dart';
 import './../step/i_dont_see.dart';
+import './../step/i_tap_the_edit_button_for.dart';
 
 void main() {
   group('''The user can''', () {
@@ -58,7 +59,7 @@ void main() {
         await iTapIcon(tester, Icons.add);
         await iSee(tester, 'Add New Counter');
         await iFillInWith(tester, 'counter name', 'New Counter');
-        await iFillInWith(tester, 'initial value', '100');
+        await iFillInWith(tester, 'counter value', '100');
         await iTapTheButton(tester, 'Add Counter');
         await iSee(tester, '3 Counters');
         await iSee(tester, 'New Counter');
@@ -75,6 +76,23 @@ void main() {
         await iTapTheDeletedButtonFor(tester, 'To be deleted counter');
         await iDontSee(tester, 'To be deleted counter');
         await iSee(tester, '1 Counters');
+      } finally {
+        await bddTearDown(tester);
+      }
+    });
+    testWidgets('''edit a counter''', (tester) async {
+      try {
+        await bddSetUp(tester);
+        await iSee(tester, 'Current Counter');
+        await iTapTheEditButtonFor(tester, 'Current Counter');
+        await iSee(tester, 'Edit Counter');
+        await iFillInWith(tester, 'counter name', 'Edited Counter');
+        await iFillInWith(tester, 'counter value', '200');
+        await iTapTheButton(tester, 'Edit Counter');
+        await iDontSee(tester, 'Current Counter');
+        await iSee(tester, 'Edited Counter');
+        await iSee(tester, '200');
+        await iSee(tester, '2 Counters');
       } finally {
         await bddTearDown(tester);
       }

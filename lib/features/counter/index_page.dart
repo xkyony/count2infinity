@@ -33,18 +33,30 @@ class CounterIndexPage extends ConsumerWidget {
                       key: Key('counter_name_${counter.id}'),
                       counter.name,
                     ),
-                    onDoubleTap: () => context.go('/counters/${counter.id}'),
+                    onDoubleTap: () => context.push('/counters/${counter.id}'),
                   ),
                   DataCell(Text('${counter.value}')),
                   DataCell(
-                    IconButton(
-                      key: Key('delete_button_${counter.id}'),
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        ref
-                            .read(counterControllerProvider.notifier)
-                            .delete(counter);
-                      },
+                    Wrap(
+                      children: [
+                        IconButton(
+                          key: Key('edit_button_${counter.id}'),
+                          icon: const Icon(Icons.edit),
+                          onPressed: () {
+                            context.push('/counters/${counter.id}/edit');
+                          },
+                        ),
+                        IconButton(
+                          key: Key('delete_button_${counter.id}'),
+                          color: Colors.red,
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            ref
+                                .read(counterControllerProvider.notifier)
+                                .delete(counter);
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -53,7 +65,7 @@ class CounterIndexPage extends ConsumerWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.go('/counters/new'),
+          onPressed: () => context.push('/counters/new'),
           child: const Icon(Icons.add),
         ),
       ),
