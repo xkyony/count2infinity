@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pharmacy/services/environment/model.dart';
 import 'package:pharmacy/services/environment/provider.dart';
@@ -20,7 +21,8 @@ Future<FirebaseApp> firebaseApp(FirebaseAppRef ref) async {
 FirebaseFirestore firebaseFirestore(FirebaseFirestoreRef ref) {
   final env = ref.read(currentEnvironmentProvider);
   return switch (env) {
-    Env.test => FakeFirebaseFirestore(),
+    Env.test => FakeFirebaseFirestore(
+        authObject: MockFirebaseAuth().authForFakeFirestore),
     // Env.dev => uselocalEmulator(),
     Env.dev => FirebaseFirestore.instance,
     Env.prod => FirebaseFirestore.instance,

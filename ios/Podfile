@@ -1,4 +1,4 @@
-IOS_SDK_VERSION = '10.27.0' # from https://github.com/firebase/flutterfire/blob/master/packages/firebase_core/firebase_core/ios/firebase_sdk_version.rb#L3
+IOS_SDK_VERSION = '10.28.0' # from https://github.com/firebase/flutterfire/blob/master/packages/firebase_core/firebase_core/ios/firebase_sdk_version.rb#L3
 IOS_TARGET = '15.0'
 
 platform :ios, IOS_TARGET

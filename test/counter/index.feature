@@ -19,8 +19,14 @@ Feature: The user can
     And I see {'Minimum'}
     And I see {'Maximum'}
 
+ Scenario: add a new counter when not logged in
+    Given I am not logged in
+    When I tap {Icons.add} icon
+    Then I see {'Please log in to add a new counter'}
+
   Scenario: add a new counter
-    Given I see {'2 Counters'}
+    Given I am logged in 
+    And I see {'2 Counters'}
     When I tap {Icons.add} icon
     Then I see {'Add New Counter'}
 

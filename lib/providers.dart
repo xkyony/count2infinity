@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/firebase_options.dart';
+import 'package:pharmacy/services/auth/firebase/repo.dart';
+import 'package:pharmacy/services/auth/repo.dart';
 import 'package:pharmacy/services/database/cloud_firestore/instance.dart';
 import 'package:pharmacy/services/local_storage/shared_preferences/repository.dart';
 
@@ -35,6 +37,7 @@ Future<ProviderScope> initializeScope(Widget child) async {
           options: DefaultFirebaseOptions.currentPlatform,
         ),
       ),
+      authRepoProvider.overrideWith(firebaseAuthRepo),
     ],
     child: child,
   );

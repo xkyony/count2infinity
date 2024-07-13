@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/features/counter/controller.dart';
+
 import '../model.dart';
 import 'column.dart';
 
@@ -42,6 +43,15 @@ class CounterCard extends ConsumerWidget {
                 at: counter.maxAt,
               ),
             ],
+          ),
+          const Divider(height: 16),
+          const ListTile(
+            subtitle: Wrap(
+              children: [
+                Text('Created by'),
+                Text('Mr.Bean'),
+              ],
+            ),
           ),
           const Divider(height: 16),
           OverflowBar(

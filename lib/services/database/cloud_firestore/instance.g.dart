@@ -20,7 +20,7 @@ final firebaseAppProvider = AutoDisposeFutureProvider<FirebaseApp>.internal(
 );
 
 typedef FirebaseAppRef = AutoDisposeFutureProviderRef<FirebaseApp>;
-String _$firebaseFirestoreHash() => r'595881b896f21ab9610233e38619f35474ea2eea';
+String _$firebaseFirestoreHash() => r'59880dc3b48bd47d09d68ebda2310d3eee5ba3bb';
 
 /// See also [firebaseFirestore].
 @ProviderFor(firebaseFirestore)

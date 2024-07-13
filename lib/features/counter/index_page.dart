@@ -33,9 +33,17 @@ class CounterIndexPage extends ConsumerWidget {
                       key: Key('counter_name_${counter.id}'),
                       counter.name,
                     ),
+                    onDoubleTap: () {
+                      context.push('/counters/${counter.id}');
+                    },
+                  ),
+                  DataCell(
+                    Text(
+                      key: Key('counter_value_${counter.id}'),
+                      '${counter.value}',
+                    ),
                     onDoubleTap: () => context.push('/counters/${counter.id}'),
                   ),
-                  DataCell(Text('${counter.value}')),
                   DataCell(
                     Wrap(
                       children: [

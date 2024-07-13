@@ -469,6 +469,12 @@ NOTE
 . add counter/routes.dart
 
 
+Test coverage
+
+brew install lcov
+flutter test --coverage
+genthml coverage/lcov.info -o coverage/html
+open coverage/html/index.html
 
 
 

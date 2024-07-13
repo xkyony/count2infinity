@@ -1,24 +1,44 @@
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pharmacy/app.dart';
-import 'package:pharmacy/features/counter/controller.dart';
-import 'package:pharmacy/features/counter/model.dart';
-import 'package:pharmacy/features/counter/repository.dart';
+import 'package:pharmacy/services/auth/firebase/repo.dart';
+import 'package:pharmacy/services/auth/repo.dart';
+import 'package:pharmacy/services/cloud_functions/firebase/instance.dart';
+import 'package:pharmacy/services/database/cloud_firestore/instance.dart';
 import 'package:pharmacy/services/local_storage/repository.dart';
 import 'package:pharmacy/services/local_storage/shared_preferences/repository.dart';
 
-import 'utils.dart';
-
 Future<void> theAppIsRunning(WidgetTester tester) async {
+  TestWidgetsFlutterBinding.ensureInitialized();
   final container = ProviderContainer();
   final localStorageRepository =
       await container.read(sharedPreferencesRepositoryProvider.future);
   // final firestore = container.read(firebaseFirestoreProvider);
   // set the initial value to 0
+  // final firebaseApp = await Firebase.initializeApp();
+  // await container.read(firebaseAppProvider.future);
+  // await Firebase.initializeApp();
+  final auth = MockFirebaseAuth(
+    signedIn: true,
+    mockUser: MockUser(
+      isAnonymous: false,
+      uid: 'Mr.Bean',
+      email: 'mrbean@hari.co',
+      displayName: 'Mr.Bean',
+    ),
+  );
+
+  final authRepo = FirebaseAuthRepo(
+    auth: auth,
+    functions: container.read(cloudFunctionsProvider),
+  );
 
   final providerContainer = createProviderContainer(
     overrides: [
       localStorageRepositoryProvider.overrideWithValue(localStorageRepository),
+      authRepoProvider.overrideWithValue(authRepo),
     ],
   );
 
@@ -29,7 +49,6 @@ Future<void> theAppIsRunning(WidgetTester tester) async {
     ),
   );
   await tester.pumpAndSettle();
-
 }
 
 ProviderContainer createProviderContainer({
