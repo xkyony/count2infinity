@@ -45,11 +45,11 @@ class CounterCard extends ConsumerWidget {
             ],
           ),
           const Divider(height: 16),
-          const ListTile(
+          ListTile(
             subtitle: Wrap(
               children: [
-                Text('Created by'),
-                Text('Mr.Bean'),
+                const Text('Created by'),
+                Text(counter.createdBy),
               ],
             ),
           ),

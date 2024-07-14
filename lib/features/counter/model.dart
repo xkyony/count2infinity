@@ -22,6 +22,7 @@ class Counter with _$Counter, Model {
     required DateTime minAt,
     required int maxValue,
     required DateTime maxAt,
+    @Default('anonymous') String createdBy,
   }) = _Counter;
 
   String get timestamps => DateFormat('HH:mm dd-MMM-yy').format(at);

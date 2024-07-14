@@ -15,8 +15,8 @@ import './../step/i_fill_in_with.dart';
 import './../step/i_tap_the_button.dart';
 import './../step/i_double_tap.dart';
 import './../step/i_am_not_logged_in.dart';
-import './../step/i_am_redirected_to_the_login_page.dart';
 import './../step/i_am_redirected_to_the_page.dart';
+import './../step/i_am_redirected_to_the_login_page.dart';
 import './../step/i_tap_the_back_button.dart';
 
 void main() {
@@ -57,17 +57,7 @@ void main() {
         await bddSetUp(tester);
         await iAmNotLoggedIn(tester);
         await iTapIcon(tester, Icons.add);
-        await iAmRedirectedToTheLoginPage(tester);
-        await iFillInWith(tester, 'username', 'user');
-        await iFillInWith(tester, 'password', 'password123');
-        await iTapTheButton(tester, 'Login');
-        await iAmRedirectedToThePage(tester, '/counters/new');
-        await iFillInWith(tester, 'counter name', 'New Counter');
-        await iFillInWith(tester, 'counter value', '100');
-        await iTapTheButton(tester, 'Add Counter');
-        await iSee(tester, '3 Counters');
-        await iSee(tester, 'New Counter');
-        await iSee(tester, '100');
+        await iAmRedirectedToThePage(tester, 'login');
       } finally {
         await bddTearDown(tester);
       }

@@ -183,7 +183,7 @@ final counterListProvider = AutoDisposeStreamProvider<List<Counter>>.internal(
 );
 
 typedef CounterListRef = AutoDisposeStreamProviderRef<List<Counter>>;
-String _$counterControllerHash() => r'3472e87be476ce7f7239e3b76eef5238720a54ce';
+String _$counterControllerHash() => r'0dbcb8494b76bc14ccf39c4d8ac25c7aad05baee';
 
 /// See also [CounterController].
 @ProviderFor(CounterController)

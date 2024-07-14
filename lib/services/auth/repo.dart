@@ -13,6 +13,8 @@ abstract class AuthRepo {
     String password,
   );
 
+  bool get isLoggedIn => currentUser != null;
+
   Stream<User?> get userStream;
   User? get currentUser;
 

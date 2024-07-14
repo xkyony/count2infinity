@@ -16,6 +16,7 @@ _$CounterImpl _$$CounterImplFromJson(Map<String, dynamic> json) =>
       minAt: DateTime.parse(json['minAt'] as String),
       maxValue: (json['maxValue'] as num).toInt(),
       maxAt: DateTime.parse(json['maxAt'] as String),
+      createdBy: json['createdBy'] as String? ?? 'anonymous',
     );
 
 Map<String, dynamic> _$$CounterImplToJson(_$CounterImpl instance) =>
@@ -28,4 +29,5 @@ Map<String, dynamic> _$$CounterImplToJson(_$CounterImpl instance) =>
       'minAt': instance.minAt.toIso8601String(),
       'maxValue': instance.maxValue,
       'maxAt': instance.maxAt.toIso8601String(),
+      'createdBy': instance.createdBy,
     };

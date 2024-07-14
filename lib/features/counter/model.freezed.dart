@@ -28,6 +28,7 @@ mixin _$Counter {
   DateTime get minAt => throw _privateConstructorUsedError;
   int get maxValue => throw _privateConstructorUsedError;
   DateTime get maxAt => throw _privateConstructorUsedError;
+  String get createdBy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $CounterCopyWith<$Res> {
       int minValue,
       DateTime minAt,
       int maxValue,
-      DateTime maxAt});
+      DateTime maxAt,
+      String createdBy});
 }
 
 /// @nodoc
@@ -71,6 +73,7 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
     Object? minAt = null,
     Object? maxValue = null,
     Object? maxAt = null,
+    Object? createdBy = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -105,6 +108,10 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
           ? _value.maxAt
           : maxAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -124,7 +131,8 @@ abstract class _$$CounterImplCopyWith<$Res> implements $CounterCopyWith<$Res> {
       int minValue,
       DateTime minAt,
       int maxValue,
-      DateTime maxAt});
+      DateTime maxAt,
+      String createdBy});
 }
 
 /// @nodoc
@@ -146,6 +154,7 @@ class __$$CounterImplCopyWithImpl<$Res>
     Object? minAt = null,
     Object? maxValue = null,
     Object? maxAt = null,
+    Object? createdBy = null,
   }) {
     return _then(_$CounterImpl(
       id: null == id
@@ -180,6 +189,10 @@ class __$$CounterImplCopyWithImpl<$Res>
           ? _value.maxAt
           : maxAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -195,7 +208,8 @@ class _$CounterImpl extends _Counter {
       required this.minValue,
       required this.minAt,
       required this.maxValue,
-      required this.maxAt})
+      required this.maxAt,
+      this.createdBy = 'anonymous'})
       : super._();
 
   factory _$CounterImpl.fromJson(Map<String, dynamic> json) =>
@@ -217,10 +231,13 @@ class _$CounterImpl extends _Counter {
   final int maxValue;
   @override
   final DateTime maxAt;
+  @override
+  @JsonKey()
+  final String createdBy;
 
   @override
   String toString() {
-    return 'Counter(id: $id, name: $name, value: $value, at: $at, minValue: $minValue, minAt: $minAt, maxValue: $maxValue, maxAt: $maxAt)';
+    return 'Counter(id: $id, name: $name, value: $value, at: $at, minValue: $minValue, minAt: $minAt, maxValue: $maxValue, maxAt: $maxAt, createdBy: $createdBy)';
   }
 
   @override
@@ -237,13 +254,15 @@ class _$CounterImpl extends _Counter {
             (identical(other.minAt, minAt) || other.minAt == minAt) &&
             (identical(other.maxValue, maxValue) ||
                 other.maxValue == maxValue) &&
-            (identical(other.maxAt, maxAt) || other.maxAt == maxAt));
+            (identical(other.maxAt, maxAt) || other.maxAt == maxAt) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, value, at, minValue, minAt, maxValue, maxAt);
+  int get hashCode => Object.hash(runtimeType, id, name, value, at, minValue,
+      minAt, maxValue, maxAt, createdBy);
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +287,8 @@ abstract class _Counter extends Counter {
       required final int minValue,
       required final DateTime minAt,
       required final int maxValue,
-      required final DateTime maxAt}) = _$CounterImpl;
+      required final DateTime maxAt,
+      final String createdBy}) = _$CounterImpl;
   const _Counter._() : super._();
 
   factory _Counter.fromJson(Map<String, dynamic> json) = _$CounterImpl.fromJson;
@@ -289,6 +309,8 @@ abstract class _Counter extends Counter {
   int get maxValue;
   @override
   DateTime get maxAt;
+  @override
+  String get createdBy;
   @override
   @JsonKey(ignore: true)
   _$$CounterImplCopyWith<_$CounterImpl> get copyWith =>

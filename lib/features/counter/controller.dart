@@ -1,6 +1,7 @@
 import 'package:pharmacy/features/counter/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../services/auth/repo.dart';
 import '../../services/local_storage/repository.dart';
 import 'model.dart';
 
@@ -11,12 +12,10 @@ Stream<Counter?> currentCounter(CurrentCounterRef ref) {
   return ref.read(counterRepoProvider).watchCurrentCounter();
 }
 
-@riverpod 
+@riverpod
 Future<Counter?> counter(CounterRef ref, String id) async {
   return await ref.read(counterRepoProvider).fetch(id);
 }
-
-
 
 @riverpod
 Stream<List<Counter>> counterList(CounterListRef ref) {
@@ -62,8 +61,12 @@ class CounterController extends _$CounterController {
     await ref.read(counterRepoProvider).add(toBeSaved);
   }
 
-  add(Counter counter) async {
-    await ref.read(counterRepoProvider).add(counter);
+  Future<void> add(Counter counter) async {
+    final user = ref.read(authRepoProvider).currentUser;
+    final counterWithCurrentUser = counter.copyWith(
+      createdBy: user?.id ?? 'anonymous',
+    );
+    await ref.read(counterRepoProvider).add(counterWithCurrentUser);
   }
 
   delete(Counter counter) async {

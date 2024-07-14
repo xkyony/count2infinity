@@ -34,7 +34,7 @@ class CounterIndexPage extends ConsumerWidget {
                       counter.name,
                     ),
                     onDoubleTap: () {
-                      context.push('/counters/${counter.id}');
+                      context.go('/counters/${counter.id}');
                     },
                   ),
                   DataCell(
@@ -42,7 +42,7 @@ class CounterIndexPage extends ConsumerWidget {
                       key: Key('counter_value_${counter.id}'),
                       '${counter.value}',
                     ),
-                    onDoubleTap: () => context.push('/counters/${counter.id}'),
+                    onDoubleTap: () => context.go('/counters/${counter.id}'),
                   ),
                   DataCell(
                     Wrap(
@@ -51,7 +51,7 @@ class CounterIndexPage extends ConsumerWidget {
                           key: Key('edit_button_${counter.id}'),
                           icon: const Icon(Icons.edit),
                           onPressed: () {
-                            context.push('/counters/${counter.id}/edit');
+                            context.go('/counters/${counter.id}/edit');
                           },
                         ),
                         IconButton(
@@ -73,7 +73,7 @@ class CounterIndexPage extends ConsumerWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.push('/counters/new'),
+          onPressed: () => context.go('/counters/new'),
           child: const Icon(Icons.add),
         ),
       ),
