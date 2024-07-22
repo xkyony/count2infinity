@@ -13,8 +13,8 @@ Stream<Counter?> currentCounter(CurrentCounterRef ref) {
 }
 
 @riverpod
-Future<Counter?> counter(CounterRef ref, String id) async {
-  return await ref.read(counterRepoProvider).fetch(id);
+Stream<Counter?> counter(CounterRef ref, String id) {
+  return ref.read(counterRepoProvider).watch(id);
 }
 
 @riverpod
@@ -25,21 +25,18 @@ Stream<List<Counter>> counterList(CounterListRef ref) {
 @riverpod
 class CounterController extends _$CounterController {
   @override
-  Future<Counter> build() async {
-    return ref.read(counterRepoProvider).fetchCurrentCounter();
+  void build() async {}
+
+  Future<void> decrement(Counter counter) async {
+    await ref.read(counterRepoProvider).add(counter.decrement());
   }
 
-  Future<void> decrement() async {
-    await ref.read(counterRepoProvider).decrementCurrentCounter();
-    ref.invalidateSelf();
+  Future<void> increment(Counter counter) async {
+    await ref.read(counterRepoProvider).add(counter.increment());
   }
 
-  Future<void> increment() async {
-    await ref.read(counterRepoProvider).incrementCurrentCounter();
-  }
-
-  Future<void> reset() async {
-    await ref.read(counterRepoProvider).resetCurrentCounter();
+  Future<void> reset(Counter counter) async {
+    await ref.read(counterRepoProvider).reset(counter);
   }
 
   Future<void> retrieveFromLocalDisk() async {
@@ -48,15 +45,13 @@ class CounterController extends _$CounterController {
     await ref.read(counterRepoProvider).add(counter);
   }
 
-  Future<void> saveToLocalDisk() async {
-    final counter = await ref.read(counterRepoProvider).fetchCurrentCounter();
+  Future<void> saveToLocalDisk(Counter counter) async {
     await ref
         .read(localStorageRepositoryProvider)
         .write('current', counter.toJson());
   }
 
-  void saveAt(DateTime time) async {
-    final counter = await ref.read(counterRepoProvider).fetchCurrentCounter();
+  void saveAt(DateTime time, Counter counter) async {
     final toBeSaved = counter.copyWith(at: time);
     await ref.read(counterRepoProvider).add(toBeSaved);
   }

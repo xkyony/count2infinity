@@ -38,7 +38,6 @@ Feature: The user can
     When I retrieve the saved counter value
     Then I see the counter value is {'5'}
     And the counter time contains {'13:30'}
-    # And the counter time contains {'05-Mar-2024'}
 
   Scenario: sync the counter in realtime with external database
     Given  I increment the counter {5} times

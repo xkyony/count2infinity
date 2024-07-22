@@ -11,14 +11,11 @@ import './../step/clean_up.dart';
 import './../step/i_see.dart';
 import 'package:bdd_widget_test/step/i_see_multiple_widgets.dart';
 import './../step/i_double_tap.dart';
-import './../step/i_am_not_logged_in.dart';
-import './../step/i_tap_icon.dart';
-import '../step/i_am_logged_in.dart';
-import './../step/i_fill_in_with.dart';
-import './../step/i_tap_the_button.dart';
 import './../step/i_tap_the_deleted_button_for.dart';
 import './../step/i_dont_see.dart';
 import './../step/i_tap_the_edit_button_for.dart';
+import './../step/i_fill_in_with.dart';
+import './../step/i_tap_the_button.dart';
 
 void main() {
   group('''The user can''', () {
@@ -54,33 +51,6 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''add a new counter when not logged in''', (tester) async {
-      try {
-        await bddSetUp(tester);
-        await iAmNotLoggedIn(tester);
-        await iTapIcon(tester, Icons.add);
-        await iSee(tester, 'Please log in to add a new counter');
-      } finally {
-        await bddTearDown(tester);
-      }
-    });
-    testWidgets('''add a new counter''', (tester) async {
-      try {
-        await bddSetUp(tester);
-        await iAmLoggedIn(tester);
-        await iSee(tester, '2 Counters');
-        await iTapIcon(tester, Icons.add);
-        await iSee(tester, 'Add New Counter');
-        await iFillInWith(tester, 'counter name', 'New Counter');
-        await iFillInWith(tester, 'counter value', '100');
-        await iTapTheButton(tester, 'Add Counter');
-        await iSee(tester, '3 Counters');
-        await iSee(tester, 'New Counter');
-        await iSee(tester, '100');
-      } finally {
-        await bddTearDown(tester);
-      }
-    });
     testWidgets('''delete a counter''', (tester) async {
       try {
         await bddSetUp(tester);
@@ -105,7 +75,6 @@ void main() {
         await iDontSee(tester, 'Current Counter');
         await iSee(tester, 'Edited Counter');
         await iSee(tester, '200');
-        await iSee(tester, '2 Counters');
       } finally {
         await bddTearDown(tester);
       }

@@ -7,7 +7,6 @@ import 'utils.dart';
 /// retrieve the counter value in the database
 Future<void> theDatabaseHasCounterValue(WidgetTester tester, num value) async {
   final container = tester.container;
-  final counter =
-      await container.read(counterRepoProvider).fetchCurrentCounter();
-  expect(counter.value, equals(value));
+  final counter = await container.read(counterRepoProvider).fetch('current');
+  expect(counter?.value, equals(value));
 }

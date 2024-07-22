@@ -58,23 +58,26 @@ class CounterCard extends ConsumerWidget {
             alignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
-                onPressed: ref.read(counterControllerProvider.notifier).reset,
+                onPressed: () =>
+                    ref.read(counterControllerProvider.notifier).reset(counter),
                 child: const Icon(Icons.refresh),
               ),
               ElevatedButton(
-                onPressed:
-                    ref.read(counterControllerProvider.notifier).decrement,
+                onPressed: () => ref
+                    .read(counterControllerProvider.notifier)
+                    .decrement(counter),
                 child: const Icon(Icons.remove),
               ),
               ElevatedButton(
-                onPressed:
-                    ref.read(counterControllerProvider.notifier).increment,
+                onPressed: () => ref
+                    .read(counterControllerProvider.notifier)
+                    .increment(counter),
                 child: const Icon(Icons.add),
               ),
               ElevatedButton(
-                onPressed: ref
+                onPressed: () => ref
                     .read(counterControllerProvider.notifier)
-                    .saveToLocalDisk,
+                    .saveToLocalDisk(counter),
                 child: const Icon(Icons.save),
               ),
               ElevatedButton(

@@ -5,11 +5,11 @@ import 'signin_screen.dart';
 
 final userRoutes = <RouteBase>[
   GoRoute(
-    path: '/users/register',
+    path: 'users/register',
     builder: (context, state) => const UserNewScreen(),
   ),
   GoRoute(
-    path: '/users/sign_in',
+    path: 'users/sign_in',
     builder: (context, state) {
       final redirect = state.uri.queryParameters['redirect'] ?? '/counters';
       return UserSignInScreen(redirect: redirect);
@@ -20,7 +20,7 @@ final userRoutes = <RouteBase>[
   //   builder: (context, state) => const UserShowScreen(),
   // ),
   GoRoute(
-    path: '/users/profile',
+    path: 'users/profile',
     builder: (context, state) => const UserShowScreen(),
   ),
 ];

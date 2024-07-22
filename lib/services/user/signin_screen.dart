@@ -15,21 +15,23 @@ class UserSignInScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // final authRepo = ref.read(authRepoProvider);
 
-    return SignInScreen(
-      auth: ref.read(firebaseAuthProvider),
-      providers: [
-        EmailAuthProvider(),
-        // Add other providers if needed
-      ],
-      actions: [
-        AuthStateChangeAction<SignedIn>((context, state) {
-          // When the user signs in, navigate to the redirect URL
-          context.go(redirect);
-        }),
-        // AuthStateChangeAction<SignInFailed>((context, state) {
-        //   // Handle sign in failure, if needed
-        // }),
-      ],
+    return Scaffold(
+      body: SignInScreen(
+        auth: ref.read(firebaseAuthProvider),
+        providers: [
+          EmailAuthProvider(),
+          // Add other providers if needed
+        ],
+        actions: [
+          AuthStateChangeAction<SignedIn>((context, state) {
+            context.go(redirect);
+          }),
+          AuthStateChangeAction<AuthFailed>((context, state) {
+            // Handle sign in failure, if needed
+            print('Login failed with redirect $redirect');
+          }),
+        ],
+      ),
     );
   }
 }

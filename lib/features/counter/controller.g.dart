@@ -21,7 +21,7 @@ final currentCounterProvider = AutoDisposeStreamProvider<Counter?>.internal(
 );
 
 typedef CurrentCounterRef = AutoDisposeStreamProviderRef<Counter?>;
-String _$counterHash() => r'9a1f14e462d7e1cd8acc326ac4b187570376ad35';
+String _$counterHash() => r'740d358d176f171614cac842cdc5a9d76377d87d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -87,7 +87,7 @@ class CounterFamily extends Family<AsyncValue<Counter?>> {
 }
 
 /// See also [counter].
-class CounterProvider extends AutoDisposeFutureProvider<Counter?> {
+class CounterProvider extends AutoDisposeStreamProvider<Counter?> {
   /// See also [counter].
   CounterProvider(
     String id,
@@ -121,7 +121,7 @@ class CounterProvider extends AutoDisposeFutureProvider<Counter?> {
 
   @override
   Override overrideWith(
-    FutureOr<Counter?> Function(CounterRef provider) create,
+    Stream<Counter?> Function(CounterRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -138,7 +138,7 @@ class CounterProvider extends AutoDisposeFutureProvider<Counter?> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Counter?> createElement() {
+  AutoDisposeStreamProviderElement<Counter?> createElement() {
     return _CounterProviderElement(this);
   }
 
@@ -156,12 +156,12 @@ class CounterProvider extends AutoDisposeFutureProvider<Counter?> {
   }
 }
 
-mixin CounterRef on AutoDisposeFutureProviderRef<Counter?> {
+mixin CounterRef on AutoDisposeStreamProviderRef<Counter?> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _CounterProviderElement extends AutoDisposeFutureProviderElement<Counter?>
+class _CounterProviderElement extends AutoDisposeStreamProviderElement<Counter?>
     with CounterRef {
   _CounterProviderElement(super.provider);
 
@@ -183,12 +183,12 @@ final counterListProvider = AutoDisposeStreamProvider<List<Counter>>.internal(
 );
 
 typedef CounterListRef = AutoDisposeStreamProviderRef<List<Counter>>;
-String _$counterControllerHash() => r'0dbcb8494b76bc14ccf39c4d8ac25c7aad05baee';
+String _$counterControllerHash() => r'4d05fa9601d00bebbabec99e588bb2762ac58c03';
 
 /// See also [CounterController].
 @ProviderFor(CounterController)
 final counterControllerProvider =
-    AutoDisposeAsyncNotifierProvider<CounterController, Counter>.internal(
+    AutoDisposeNotifierProvider<CounterController, void>.internal(
   CounterController.new,
   name: r'counterControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -198,6 +198,6 @@ final counterControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CounterController = AutoDisposeAsyncNotifier<Counter>;
+typedef _$CounterController = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

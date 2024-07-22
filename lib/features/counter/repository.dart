@@ -37,6 +37,10 @@ class CounterRepo extends FirebaseRepository<Counter> {
     return initial;
   }
 
+  Future<void> decrement(Counter counter) async {
+    await add(counter.decrement());
+  }
+
   Future<void> decrementCurrentCounter() async {
     final counter = await fetchCurrentCounter();
     await add(counter.decrement());
@@ -47,8 +51,7 @@ class CounterRepo extends FirebaseRepository<Counter> {
     await add(counter.increment());
   }
 
-  Future<void> resetCurrentCounter() async {
-    final counter = await fetchCurrentCounter();
+  Future<void> reset(Counter counter) async {
     await add(counter.reset());
   }
 }

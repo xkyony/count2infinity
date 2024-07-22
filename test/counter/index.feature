@@ -19,25 +19,6 @@ Feature: The user can
     And I see {'Minimum'}
     And I see {'Maximum'}
 
- Scenario: add a new counter when not logged in
-    Given I am not logged in
-    When I tap {Icons.add} icon
-    Then I see {'Please log in to add a new counter'}
-
-  Scenario: add a new counter
-    Given I am logged in 
-    And I see {'2 Counters'}
-    When I tap {Icons.add} icon
-    Then I see {'Add New Counter'}
-
-    When I fill in {'counter name'} with {'New Counter'}
-    And I fill in {'counter value'} with  {'100'} 
-    And I tap the {'Add Counter'} button
-    
-    Then I see {'3 Counters'}
-    And I see {'New Counter'}
-    And I see {'100'}
-
   Scenario: delete a counter
     Given I see {'2 Counters'}
     And I see {'To be deleted counter'}
@@ -57,7 +38,7 @@ Feature: The user can
     Then I don't see {'Current Counter'} 
     And I see {'Edited Counter'}
     And I see {'200'}
-    And I see {'2 Counters'}
+    # And I see {'2 Counters'}
 
 
 

@@ -16,11 +16,12 @@ import './../step/i_tap_the_button.dart';
 import './../step/i_double_tap.dart';
 import './../step/i_am_not_logged_in.dart';
 import './../step/i_am_redirected_to_the_page.dart';
-import './../step/i_am_redirected_to_the_login_page.dart';
-import './../step/i_tap_the_back_button.dart';
+import './../step/i_succeed_to_login_with_email_and_password.dart';
+import './../step/i_fail_to_login_with_email_and_password.dart';
+import '../step/i_go_back.dart';
 
 void main() {
-  group('''To create a new counter''', () {
+  group('''Counter creation''', () {
     Future<void> bddSetUp(WidgetTester tester) async {
       await theAppIsRunning(tester);
       await theAppHas2Counters(tester);
@@ -31,13 +32,13 @@ void main() {
       await cleanUp(tester);
     }
 
-    testWidgets('''The user must be authenticated''', (tester) async {
+    testWidgets('''succeeds for authenticated users''', (tester) async {
       try {
         await bddSetUp(tester);
         await iAmLoggedInAs(tester, 'Mr.Bean');
         await iSee(tester, '2 Counters');
         await iTapIcon(tester, Icons.add);
-        await iSee(tester, 'Add New Counter');
+        await iSee(tester, 'Add Counter');
         await iFillInWith(tester, 'counter name', 'New Counter');
         await iFillInWith(tester, 'counter value', '100');
         await iTapTheButton(tester, 'Add Counter');
@@ -51,34 +52,34 @@ void main() {
         await bddTearDown(tester);
       }
     });
-    testWidgets('''The guest user is redirected first to login''',
-        (tester) async {
+    testWidgets('''redirects unauthenticated users to login''', (tester) async {
       try {
         await bddSetUp(tester);
         await iAmNotLoggedIn(tester);
         await iTapIcon(tester, Icons.add);
-        await iAmRedirectedToThePage(tester, 'login');
+        await iAmRedirectedToThePage(tester, '/users/sign_in');
+        await iSucceedToLoginWithEmailAndPassword(
+            tester, 'mrbean@hari.co', 'Qu1rkY');
+        await iAmLoggedInAs(tester, 'Mr.Bean');
+        await iAmRedirectedToThePage(tester, '/counters/new');
       } finally {
         await bddTearDown(tester);
       }
     });
-    testWidgets(
-        '''The guest user can go back to the home page after failed logins''',
+    testWidgets('''allows guests to return home after failed login''',
         (tester) async {
       try {
         await bddSetUp(tester);
         await iAmNotLoggedIn(tester);
         await iTapIcon(tester, Icons.add);
-        await iAmRedirectedToTheLoginPage(tester);
-        await iFillInWith(tester, 'username', 'wrongUser');
-        await iFillInWith(tester, 'password', 'wrongPassword');
-        await iTapTheButton(tester, 'Login');
-        await iTapTheBackButton(tester);
+        await iAmRedirectedToThePage(tester, '/users/sign_in');
+        await iFailToLoginWithEmailAndPassword(tester, 'wrong@user.co', 'bad');
+        await iGoBack(tester);
         await iAmRedirectedToThePage(tester, '/counters');
         await iSee(tester, '2 Counters');
       } finally {
         await bddTearDown(tester);
       }
-    }, tags: ['skip']);
+    });
   });
 }

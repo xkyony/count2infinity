@@ -1,5 +1,6 @@
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pharmacy/app.dart';
@@ -20,6 +21,7 @@ Future<void> theAppIsRunning(WidgetTester tester) async {
   // final firebaseApp = await Firebase.initializeApp();
   // await container.read(firebaseAppProvider.future);
   // await Firebase.initializeApp();
+  setFirebaseUiIsTestMode(true);
   final auth = MockFirebaseAuth(
     signedIn: true,
     mockUser: MockUser(
@@ -28,6 +30,9 @@ Future<void> theAppIsRunning(WidgetTester tester) async {
       email: 'mrbean@hari.co',
       displayName: 'Mr.Bean',
     ),
+    signInMethodsForEmail: {
+      'mrbean@hari.co': ['Qu1rkY!']
+    },
   );
 
   final authRepo = FirebaseAuthRepo(

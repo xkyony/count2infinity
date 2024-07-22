@@ -5,7 +5,7 @@ import 'edit_page.dart';
 import 'show_page.dart';
 
 final counterRoute = GoRoute(
-  path: '/counters',
+  path: 'counters',
   builder: (context, state) => const CounterIndexPage(),
   routes: [
     GoRoute(

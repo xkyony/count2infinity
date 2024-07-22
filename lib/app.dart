@@ -11,16 +11,13 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    return AppInitialization(
-      child: MaterialApp.router(
-        title: 'Counter',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
+    return MaterialApp.router(
+      title: 'Counter',
+      theme: ThemeData(
+        useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
     );
   }
 }

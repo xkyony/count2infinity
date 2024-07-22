@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharmacy/dashboard.dart';
+import 'package:pharmacy/features/counter/index_page.dart';
 import 'package:pharmacy/services/auth/repo.dart';
 import 'package:pharmacy/services/user/route.dart';
 
@@ -18,13 +20,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isSigningUp = path == '/users/sign_up';
 
       // NOTE: /counters is not guarded
-      if (path == '/counters') {
+      if (path == '/counters' || path == '/') {
         return null;
       }
 
       // Redirect to login page and save the intended location in query parameter
       if (!isLoggedIn && !isSigningIn && !isSigningUp) {
-        print('Here in !isLoggedIn');
         return '/users/sign_in?redirect=$path';
       }
 
@@ -34,12 +35,16 @@ final routerProvider = Provider<GoRouter>((ref) {
             state.uri.queryParameters['redirect'] ?? '/counters';
         return redirectLocation;
       }
-
       return null;
     },
     routes: [
-      counterRoute,
-      ...userRoutes,
+      GoRoute(
+          path: '/',
+          builder: (context, state) => const Dashboard(),
+          routes: [
+            counterRoute,
+            ...userRoutes,
+          ]),
     ],
   );
 });
